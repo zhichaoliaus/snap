@@ -1,0 +1,1240 @@
+
+
+================================================================
+== Vivado HLS Report for 'process_action'
+================================================================
+* Date:           Fri Jan  4 17:51:08 2019
+
+* Version:        2017.4 (Build 2086221 on Fri Dec 15 21:13:33 MST 2017)
+* Project:        hlsUpperCase_xcvu9p-flgb2104-2l-e
+* Solution:       helloworld
+* Product family: virtexuplus
+* Target device:  xcvu9p-flgb2104-2l-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   4.00|      3.50|        0.50|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------------+-----+-----+----------+-----------+-----------+------+----------+
+        |                         |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        |        Loop Name        | min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------------+-----+-----+----------+-----------+-----------+------+----------+
+        |- main_loop              |    ?|    ?|       208|          -|          -|     ?|    no    |
+        | + uppercase_conversion  |  128|  128|         2|          -|          -|    64|    no    |
+        +-------------------------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 82
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!tmp)
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	11  / true
+11 --> 
+	12  / true
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / true
+16 --> 
+	17  / true
+17 --> 
+	18  / true
+18 --> 
+	19  / true
+19 --> 
+	20  / true
+20 --> 
+	21  / true
+21 --> 
+	22  / true
+22 --> 
+	23  / true
+23 --> 
+	24  / true
+24 --> 
+	25  / true
+25 --> 
+	26  / true
+26 --> 
+	27  / true
+27 --> 
+	28  / true
+28 --> 
+	29  / true
+29 --> 
+	30  / true
+30 --> 
+	31  / true
+31 --> 
+	32  / true
+32 --> 
+	33  / true
+33 --> 
+	34  / true
+34 --> 
+	35  / true
+35 --> 
+	36  / true
+36 --> 
+	37  / true
+37 --> 
+	38  / true
+38 --> 
+	39  / true
+39 --> 
+	40  / true
+40 --> 
+	41  / true
+41 --> 
+	42  / true
+42 --> 
+	43  / true
+43 --> 
+	44  / (!tmp_66)
+	45  / (tmp_66)
+44 --> 
+	43  / true
+45 --> 
+	46  / true
+46 --> 
+	47  / true
+47 --> 
+	48  / true
+48 --> 
+	49  / true
+49 --> 
+	50  / true
+50 --> 
+	51  / true
+51 --> 
+	52  / true
+52 --> 
+	53  / true
+53 --> 
+	54  / true
+54 --> 
+	55  / true
+55 --> 
+	56  / true
+56 --> 
+	57  / true
+57 --> 
+	58  / true
+58 --> 
+	59  / true
+59 --> 
+	60  / true
+60 --> 
+	61  / true
+61 --> 
+	62  / true
+62 --> 
+	63  / true
+63 --> 
+	64  / true
+64 --> 
+	65  / true
+65 --> 
+	66  / true
+66 --> 
+	67  / true
+67 --> 
+	68  / true
+68 --> 
+	69  / true
+69 --> 
+	70  / true
+70 --> 
+	71  / true
+71 --> 
+	72  / true
+72 --> 
+	73  / true
+73 --> 
+	74  / true
+74 --> 
+	75  / true
+75 --> 
+	76  / true
+76 --> 
+	77  / true
+77 --> 
+	78  / true
+78 --> 
+	79  / true
+79 --> 
+	80  / true
+80 --> 
+	81  / true
+81 --> 
+	82  / true
+82 --> 
+	2  / true
+
+* FSM state operations: 
+
+ <State 1> : 0.60ns
+ST_1 : Operation 83 [1/1] (0.00ns)   --->   "%act_reg_Data_out_add_1 = call i64 @_ssdm_op_Read.ap_auto.i64(i64 %act_reg_Data_out_add)"
+ST_1 : Operation 84 [1/1] (0.00ns)   --->   "%act_reg_Data_in_size_1 = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %act_reg_Data_in_size)"
+ST_1 : Operation 85 [1/1] (0.00ns)   --->   "%act_reg_Data_in_addr_1 = call i64 @_ssdm_op_Read.ap_auto.i64(i64 %act_reg_Data_in_addr)"
+ST_1 : Operation 86 [1/1] (0.00ns)   --->   "%dout_gmem_V_offset_r = call i58 @_ssdm_op_Read.ap_auto.i58(i58 %dout_gmem_V_offset)"
+ST_1 : Operation 87 [1/1] (0.00ns)   --->   "%din_gmem_V_offset_re = call i58 @_ssdm_op_Read.ap_auto.i58(i58 %din_gmem_V_offset)"
+ST_1 : Operation 88 [1/1] (0.00ns)   --->   "%dout_gmem_V_offset_c = zext i58 %dout_gmem_V_offset_r to i64"
+ST_1 : Operation 89 [1/1] (0.00ns)   --->   "%din_gmem_V_offset_ca = zext i58 %din_gmem_V_offset_re to i64"
+ST_1 : Operation 90 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i512* %din_gmem_V, [6 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 512, [9 x i8]* @p_str2, [6 x i8]* @p_str3, [1 x i8]* @p_str1, i32 16, i32 16, i32 64, i32 64, [1 x i8]* @p_str1, [1 x i8]* @p_str1)"
+ST_1 : Operation 91 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i512* %din_gmem_V, [6 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 512, [9 x i8]* @p_str2, [6 x i8]* @p_str3, [1 x i8]* @p_str1, i32 16, i32 16, i32 64, i32 64, [1 x i8]* @p_str1, [1 x i8]* @p_str1)"
+ST_1 : Operation 92 [1/1] (0.00ns)   --->   "%text = alloca [64 x i8], align 16" [action_uppercase.cpp:48]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_1 : Operation 93 [1/1] (0.00ns)   --->   "%i_idx = call i58 @_ssdm_op_PartSelect.i58.i64.i32.i32(i64 %act_reg_Data_in_addr_1, i32 6, i32 63)" [action_uppercase.cpp:41]
+ST_1 : Operation 94 [1/1] (0.00ns)   --->   "%i_idx_2 = zext i58 %i_idx to i64" [action_uppercase.cpp:41]
+ST_1 : Operation 95 [1/1] (0.00ns)   --->   "%o_idx = call i58 @_ssdm_op_PartSelect.i58.i64.i32.i32(i64 %act_reg_Data_out_add_1, i32 6, i32 63)" [action_uppercase.cpp:42]
+ST_1 : Operation 96 [1/1] (0.00ns)   --->   "%o_idx_2 = zext i58 %o_idx to i64" [action_uppercase.cpp:42]
+ST_1 : Operation 97 [1/1] (0.00ns)   --->   "%text_addr = getelementptr inbounds [64 x i8]* %text, i64 0, i64 0" [action_uppercase.cpp:55]
+ST_1 : Operation 98 [1/1] (0.00ns)   --->   "%text_addr_1 = getelementptr [64 x i8]* %text, i64 0, i64 1" [action_uppercase.cpp:55]
+ST_1 : Operation 99 [1/1] (0.00ns)   --->   "%text_addr_2 = getelementptr [64 x i8]* %text, i64 0, i64 2" [action_uppercase.cpp:55]
+ST_1 : Operation 100 [1/1] (0.00ns)   --->   "%text_addr_3 = getelementptr [64 x i8]* %text, i64 0, i64 3" [action_uppercase.cpp:55]
+ST_1 : Operation 101 [1/1] (0.00ns)   --->   "%text_addr_4 = getelementptr [64 x i8]* %text, i64 0, i64 4" [action_uppercase.cpp:55]
+ST_1 : Operation 102 [1/1] (0.00ns)   --->   "%text_addr_5 = getelementptr [64 x i8]* %text, i64 0, i64 5" [action_uppercase.cpp:55]
+ST_1 : Operation 103 [1/1] (0.00ns)   --->   "%text_addr_6 = getelementptr [64 x i8]* %text, i64 0, i64 6" [action_uppercase.cpp:55]
+ST_1 : Operation 104 [1/1] (0.00ns)   --->   "%text_addr_7 = getelementptr [64 x i8]* %text, i64 0, i64 7" [action_uppercase.cpp:55]
+ST_1 : Operation 105 [1/1] (0.00ns)   --->   "%text_addr_8 = getelementptr [64 x i8]* %text, i64 0, i64 8" [action_uppercase.cpp:55]
+ST_1 : Operation 106 [1/1] (0.00ns)   --->   "%text_addr_9 = getelementptr [64 x i8]* %text, i64 0, i64 9" [action_uppercase.cpp:55]
+ST_1 : Operation 107 [1/1] (0.00ns)   --->   "%text_addr_10 = getelementptr [64 x i8]* %text, i64 0, i64 10" [action_uppercase.cpp:55]
+ST_1 : Operation 108 [1/1] (0.00ns)   --->   "%text_addr_11 = getelementptr [64 x i8]* %text, i64 0, i64 11" [action_uppercase.cpp:55]
+ST_1 : Operation 109 [1/1] (0.00ns)   --->   "%text_addr_12 = getelementptr [64 x i8]* %text, i64 0, i64 12" [action_uppercase.cpp:55]
+ST_1 : Operation 110 [1/1] (0.00ns)   --->   "%text_addr_13 = getelementptr [64 x i8]* %text, i64 0, i64 13" [action_uppercase.cpp:55]
+ST_1 : Operation 111 [1/1] (0.00ns)   --->   "%text_addr_14 = getelementptr [64 x i8]* %text, i64 0, i64 14" [action_uppercase.cpp:55]
+ST_1 : Operation 112 [1/1] (0.00ns)   --->   "%text_addr_15 = getelementptr [64 x i8]* %text, i64 0, i64 15" [action_uppercase.cpp:55]
+ST_1 : Operation 113 [1/1] (0.00ns)   --->   "%text_addr_16 = getelementptr [64 x i8]* %text, i64 0, i64 16" [action_uppercase.cpp:55]
+ST_1 : Operation 114 [1/1] (0.00ns)   --->   "%text_addr_17 = getelementptr [64 x i8]* %text, i64 0, i64 17" [action_uppercase.cpp:55]
+ST_1 : Operation 115 [1/1] (0.00ns)   --->   "%text_addr_18 = getelementptr [64 x i8]* %text, i64 0, i64 18" [action_uppercase.cpp:55]
+ST_1 : Operation 116 [1/1] (0.00ns)   --->   "%text_addr_19 = getelementptr [64 x i8]* %text, i64 0, i64 19" [action_uppercase.cpp:55]
+ST_1 : Operation 117 [1/1] (0.00ns)   --->   "%text_addr_20 = getelementptr [64 x i8]* %text, i64 0, i64 20" [action_uppercase.cpp:55]
+ST_1 : Operation 118 [1/1] (0.00ns)   --->   "%text_addr_21 = getelementptr [64 x i8]* %text, i64 0, i64 21" [action_uppercase.cpp:55]
+ST_1 : Operation 119 [1/1] (0.00ns)   --->   "%text_addr_22 = getelementptr [64 x i8]* %text, i64 0, i64 22" [action_uppercase.cpp:55]
+ST_1 : Operation 120 [1/1] (0.00ns)   --->   "%text_addr_23 = getelementptr [64 x i8]* %text, i64 0, i64 23" [action_uppercase.cpp:55]
+ST_1 : Operation 121 [1/1] (0.00ns)   --->   "%text_addr_24 = getelementptr [64 x i8]* %text, i64 0, i64 24" [action_uppercase.cpp:55]
+ST_1 : Operation 122 [1/1] (0.00ns)   --->   "%text_addr_25 = getelementptr [64 x i8]* %text, i64 0, i64 25" [action_uppercase.cpp:55]
+ST_1 : Operation 123 [1/1] (0.00ns)   --->   "%text_addr_26 = getelementptr [64 x i8]* %text, i64 0, i64 26" [action_uppercase.cpp:55]
+ST_1 : Operation 124 [1/1] (0.00ns)   --->   "%text_addr_27 = getelementptr [64 x i8]* %text, i64 0, i64 27" [action_uppercase.cpp:55]
+ST_1 : Operation 125 [1/1] (0.00ns)   --->   "%text_addr_28 = getelementptr [64 x i8]* %text, i64 0, i64 28" [action_uppercase.cpp:55]
+ST_1 : Operation 126 [1/1] (0.00ns)   --->   "%text_addr_29 = getelementptr [64 x i8]* %text, i64 0, i64 29" [action_uppercase.cpp:55]
+ST_1 : Operation 127 [1/1] (0.00ns)   --->   "%text_addr_30 = getelementptr [64 x i8]* %text, i64 0, i64 30" [action_uppercase.cpp:55]
+ST_1 : Operation 128 [1/1] (0.00ns)   --->   "%text_addr_31 = getelementptr [64 x i8]* %text, i64 0, i64 31" [action_uppercase.cpp:55]
+ST_1 : Operation 129 [1/1] (0.00ns)   --->   "%text_addr_32 = getelementptr [64 x i8]* %text, i64 0, i64 32" [action_uppercase.cpp:55]
+ST_1 : Operation 130 [1/1] (0.00ns)   --->   "%text_addr_33 = getelementptr [64 x i8]* %text, i64 0, i64 33" [action_uppercase.cpp:55]
+ST_1 : Operation 131 [1/1] (0.00ns)   --->   "%text_addr_34 = getelementptr [64 x i8]* %text, i64 0, i64 34" [action_uppercase.cpp:55]
+ST_1 : Operation 132 [1/1] (0.00ns)   --->   "%text_addr_35 = getelementptr [64 x i8]* %text, i64 0, i64 35" [action_uppercase.cpp:55]
+ST_1 : Operation 133 [1/1] (0.00ns)   --->   "%text_addr_36 = getelementptr [64 x i8]* %text, i64 0, i64 36" [action_uppercase.cpp:55]
+ST_1 : Operation 134 [1/1] (0.00ns)   --->   "%text_addr_37 = getelementptr [64 x i8]* %text, i64 0, i64 37" [action_uppercase.cpp:55]
+ST_1 : Operation 135 [1/1] (0.00ns)   --->   "%text_addr_38 = getelementptr [64 x i8]* %text, i64 0, i64 38" [action_uppercase.cpp:55]
+ST_1 : Operation 136 [1/1] (0.00ns)   --->   "%text_addr_39 = getelementptr [64 x i8]* %text, i64 0, i64 39" [action_uppercase.cpp:55]
+ST_1 : Operation 137 [1/1] (0.00ns)   --->   "%text_addr_40 = getelementptr [64 x i8]* %text, i64 0, i64 40" [action_uppercase.cpp:55]
+ST_1 : Operation 138 [1/1] (0.00ns)   --->   "%text_addr_41 = getelementptr [64 x i8]* %text, i64 0, i64 41" [action_uppercase.cpp:55]
+ST_1 : Operation 139 [1/1] (0.00ns)   --->   "%text_addr_42 = getelementptr [64 x i8]* %text, i64 0, i64 42" [action_uppercase.cpp:55]
+ST_1 : Operation 140 [1/1] (0.00ns)   --->   "%text_addr_43 = getelementptr [64 x i8]* %text, i64 0, i64 43" [action_uppercase.cpp:55]
+ST_1 : Operation 141 [1/1] (0.00ns)   --->   "%text_addr_44 = getelementptr [64 x i8]* %text, i64 0, i64 44" [action_uppercase.cpp:55]
+ST_1 : Operation 142 [1/1] (0.00ns)   --->   "%text_addr_45 = getelementptr [64 x i8]* %text, i64 0, i64 45" [action_uppercase.cpp:55]
+ST_1 : Operation 143 [1/1] (0.00ns)   --->   "%text_addr_46 = getelementptr [64 x i8]* %text, i64 0, i64 46" [action_uppercase.cpp:55]
+ST_1 : Operation 144 [1/1] (0.00ns)   --->   "%text_addr_47 = getelementptr [64 x i8]* %text, i64 0, i64 47" [action_uppercase.cpp:55]
+ST_1 : Operation 145 [1/1] (0.00ns)   --->   "%text_addr_48 = getelementptr [64 x i8]* %text, i64 0, i64 48" [action_uppercase.cpp:55]
+ST_1 : Operation 146 [1/1] (0.00ns)   --->   "%text_addr_49 = getelementptr [64 x i8]* %text, i64 0, i64 49" [action_uppercase.cpp:55]
+ST_1 : Operation 147 [1/1] (0.00ns)   --->   "%text_addr_50 = getelementptr [64 x i8]* %text, i64 0, i64 50" [action_uppercase.cpp:55]
+ST_1 : Operation 148 [1/1] (0.00ns)   --->   "%text_addr_51 = getelementptr [64 x i8]* %text, i64 0, i64 51" [action_uppercase.cpp:55]
+ST_1 : Operation 149 [1/1] (0.00ns)   --->   "%text_addr_52 = getelementptr [64 x i8]* %text, i64 0, i64 52" [action_uppercase.cpp:55]
+ST_1 : Operation 150 [1/1] (0.00ns)   --->   "%text_addr_53 = getelementptr [64 x i8]* %text, i64 0, i64 53" [action_uppercase.cpp:55]
+ST_1 : Operation 151 [1/1] (0.00ns)   --->   "%text_addr_54 = getelementptr [64 x i8]* %text, i64 0, i64 54" [action_uppercase.cpp:55]
+ST_1 : Operation 152 [1/1] (0.00ns)   --->   "%text_addr_55 = getelementptr [64 x i8]* %text, i64 0, i64 55" [action_uppercase.cpp:55]
+ST_1 : Operation 153 [1/1] (0.00ns)   --->   "%text_addr_56 = getelementptr [64 x i8]* %text, i64 0, i64 56" [action_uppercase.cpp:55]
+ST_1 : Operation 154 [1/1] (0.00ns)   --->   "%text_addr_57 = getelementptr [64 x i8]* %text, i64 0, i64 57" [action_uppercase.cpp:55]
+ST_1 : Operation 155 [1/1] (0.00ns)   --->   "%text_addr_58 = getelementptr [64 x i8]* %text, i64 0, i64 58" [action_uppercase.cpp:55]
+ST_1 : Operation 156 [1/1] (0.00ns)   --->   "%text_addr_59 = getelementptr [64 x i8]* %text, i64 0, i64 59" [action_uppercase.cpp:55]
+ST_1 : Operation 157 [1/1] (0.00ns)   --->   "%text_addr_60 = getelementptr [64 x i8]* %text, i64 0, i64 60" [action_uppercase.cpp:55]
+ST_1 : Operation 158 [1/1] (0.00ns)   --->   "%text_addr_61 = getelementptr [64 x i8]* %text, i64 0, i64 61" [action_uppercase.cpp:55]
+ST_1 : Operation 159 [1/1] (0.00ns)   --->   "%text_addr_62 = getelementptr [64 x i8]* %text, i64 0, i64 62" [action_uppercase.cpp:55]
+ST_1 : Operation 160 [1/1] (0.00ns)   --->   "%text_addr_63 = getelementptr [64 x i8]* %text, i64 0, i64 63" [action_uppercase.cpp:55]
+ST_1 : Operation 161 [1/1] (0.60ns)   --->   "br label %1" [action_uppercase.cpp:46]
+
+ <State 2> : 1.15ns
+ST_2 : Operation 162 [1/1] (0.00ns)   --->   "%size1 = phi i32 [ %act_reg_Data_in_size_1, %0 ], [ %size, %6 ]"
+ST_2 : Operation 163 [1/1] (0.00ns)   --->   "%i_idx1 = phi i64 [ %i_idx_2, %0 ], [ %i_idx_1, %6 ]"
+ST_2 : Operation 164 [1/1] (0.00ns)   --->   "%o_idx1 = phi i64 [ %o_idx_2, %0 ], [ %o_idx_1, %6 ]"
+ST_2 : Operation 165 [1/1] (0.85ns)   --->   "%tmp = icmp eq i32 %size1, 0" [action_uppercase.cpp:46]   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 166 [1/1] (0.00ns)   --->   "br i1 %tmp, label %7, label %2" [action_uppercase.cpp:46]
+ST_2 : Operation 167 [1/1] (1.14ns)   --->   "%sum = add i64 %din_gmem_V_offset_ca, %i_idx1" [action_uppercase.cpp:41]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 168 [1/1] (0.00ns)   --->   "ret void"
+
+ <State 3> : 3.50ns
+ST_3 : Operation 169 [1/1] (0.00ns)   --->   "%dout_gmem_V_addr = getelementptr i512* %din_gmem_V, i64 %sum" [action_uppercase.cpp:55]
+ST_3 : Operation 170 [7/7] (3.50ns)   --->   "%dout_gmem_V_load_req = call i1 @_ssdm_op_ReadReq.m_axi.i512P(i512* %dout_gmem_V_addr, i32 1)" [action_uppercase.cpp:55]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 4> : 3.50ns
+ST_4 : Operation 171 [6/7] (3.50ns)   --->   "%dout_gmem_V_load_req = call i1 @_ssdm_op_ReadReq.m_axi.i512P(i512* %dout_gmem_V_addr, i32 1)" [action_uppercase.cpp:55]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 5> : 3.50ns
+ST_5 : Operation 172 [5/7] (3.50ns)   --->   "%dout_gmem_V_load_req = call i1 @_ssdm_op_ReadReq.m_axi.i512P(i512* %dout_gmem_V_addr, i32 1)" [action_uppercase.cpp:55]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 6> : 3.50ns
+ST_6 : Operation 173 [4/7] (3.50ns)   --->   "%dout_gmem_V_load_req = call i1 @_ssdm_op_ReadReq.m_axi.i512P(i512* %dout_gmem_V_addr, i32 1)" [action_uppercase.cpp:55]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 7> : 3.50ns
+ST_7 : Operation 174 [3/7] (3.50ns)   --->   "%dout_gmem_V_load_req = call i1 @_ssdm_op_ReadReq.m_axi.i512P(i512* %dout_gmem_V_addr, i32 1)" [action_uppercase.cpp:55]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 8> : 3.50ns
+ST_8 : Operation 175 [2/7] (3.50ns)   --->   "%dout_gmem_V_load_req = call i1 @_ssdm_op_ReadReq.m_axi.i512P(i512* %dout_gmem_V_addr, i32 1)" [action_uppercase.cpp:55]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 9> : 3.50ns
+ST_9 : Operation 176 [1/7] (3.50ns)   --->   "%dout_gmem_V_load_req = call i1 @_ssdm_op_ReadReq.m_axi.i512P(i512* %dout_gmem_V_addr, i32 1)" [action_uppercase.cpp:55]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 10> : 3.50ns
+ST_10 : Operation 177 [1/1] (3.50ns)   --->   "%dout_gmem_V_addr_rea = call i512 @_ssdm_op_Read.m_axi.i512P(i512* %dout_gmem_V_addr)" [action_uppercase.cpp:55]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_10 : Operation 178 [1/1] (0.00ns)   --->   "%tmp_72 = trunc i512 %dout_gmem_V_addr_rea to i8" [action_uppercase.cpp:55]
+ST_10 : Operation 179 [1/1] (0.00ns)   --->   "%tmp_4 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 8, i32 15)" [action_uppercase.cpp:55]
+ST_10 : Operation 180 [1/1] (0.00ns)   --->   "%tmp_6 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 16, i32 23)" [action_uppercase.cpp:55]
+ST_10 : Operation 181 [1/1] (0.00ns)   --->   "%tmp_8 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 24, i32 31)" [action_uppercase.cpp:55]
+ST_10 : Operation 182 [1/1] (0.00ns)   --->   "%tmp_s = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 32, i32 39)" [action_uppercase.cpp:55]
+ST_10 : Operation 183 [1/1] (0.00ns)   --->   "%tmp_5 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 40, i32 47)" [action_uppercase.cpp:55]
+ST_10 : Operation 184 [1/1] (0.00ns)   --->   "%tmp_7 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 48, i32 55)" [action_uppercase.cpp:55]
+ST_10 : Operation 185 [1/1] (0.00ns)   --->   "%tmp_9 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 56, i32 63)" [action_uppercase.cpp:55]
+ST_10 : Operation 186 [1/1] (0.00ns)   --->   "%tmp_10 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 64, i32 71)" [action_uppercase.cpp:55]
+ST_10 : Operation 187 [1/1] (0.00ns)   --->   "%tmp_11 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 72, i32 79)" [action_uppercase.cpp:55]
+ST_10 : Operation 188 [1/1] (0.00ns)   --->   "%tmp_12 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 80, i32 87)" [action_uppercase.cpp:55]
+ST_10 : Operation 189 [1/1] (0.00ns)   --->   "%tmp_13 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 88, i32 95)" [action_uppercase.cpp:55]
+ST_10 : Operation 190 [1/1] (0.00ns)   --->   "%tmp_14 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 96, i32 103)" [action_uppercase.cpp:55]
+ST_10 : Operation 191 [1/1] (0.00ns)   --->   "%tmp_15 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 104, i32 111)" [action_uppercase.cpp:55]
+ST_10 : Operation 192 [1/1] (0.00ns)   --->   "%tmp_16 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 112, i32 119)" [action_uppercase.cpp:55]
+ST_10 : Operation 193 [1/1] (0.00ns)   --->   "%tmp_17 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 120, i32 127)" [action_uppercase.cpp:55]
+ST_10 : Operation 194 [1/1] (0.00ns)   --->   "%tmp_18 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 128, i32 135)" [action_uppercase.cpp:55]
+ST_10 : Operation 195 [1/1] (0.00ns)   --->   "%tmp_19 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 136, i32 143)" [action_uppercase.cpp:55]
+ST_10 : Operation 196 [1/1] (0.00ns)   --->   "%tmp_20 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 144, i32 151)" [action_uppercase.cpp:55]
+ST_10 : Operation 197 [1/1] (0.00ns)   --->   "%tmp_21 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 152, i32 159)" [action_uppercase.cpp:55]
+ST_10 : Operation 198 [1/1] (0.00ns)   --->   "%tmp_22 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 160, i32 167)" [action_uppercase.cpp:55]
+ST_10 : Operation 199 [1/1] (0.00ns)   --->   "%tmp_23 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 168, i32 175)" [action_uppercase.cpp:55]
+ST_10 : Operation 200 [1/1] (0.00ns)   --->   "%tmp_24 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 176, i32 183)" [action_uppercase.cpp:55]
+ST_10 : Operation 201 [1/1] (0.00ns)   --->   "%tmp_25 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 184, i32 191)" [action_uppercase.cpp:55]
+ST_10 : Operation 202 [1/1] (0.00ns)   --->   "%tmp_26 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 192, i32 199)" [action_uppercase.cpp:55]
+ST_10 : Operation 203 [1/1] (0.00ns)   --->   "%tmp_27 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 200, i32 207)" [action_uppercase.cpp:55]
+ST_10 : Operation 204 [1/1] (0.00ns)   --->   "%tmp_28 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 208, i32 215)" [action_uppercase.cpp:55]
+ST_10 : Operation 205 [1/1] (0.00ns)   --->   "%tmp_29 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 216, i32 223)" [action_uppercase.cpp:55]
+ST_10 : Operation 206 [1/1] (0.00ns)   --->   "%tmp_30 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 224, i32 231)" [action_uppercase.cpp:55]
+ST_10 : Operation 207 [1/1] (0.00ns)   --->   "%tmp_31 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 232, i32 239)" [action_uppercase.cpp:55]
+ST_10 : Operation 208 [1/1] (0.00ns)   --->   "%tmp_32 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 240, i32 247)" [action_uppercase.cpp:55]
+ST_10 : Operation 209 [1/1] (0.00ns)   --->   "%tmp_33 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 248, i32 255)" [action_uppercase.cpp:55]
+ST_10 : Operation 210 [1/1] (0.00ns)   --->   "%tmp_34 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 256, i32 263)" [action_uppercase.cpp:55]
+ST_10 : Operation 211 [1/1] (0.00ns)   --->   "%tmp_35 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 264, i32 271)" [action_uppercase.cpp:55]
+ST_10 : Operation 212 [1/1] (0.00ns)   --->   "%tmp_36 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 272, i32 279)" [action_uppercase.cpp:55]
+ST_10 : Operation 213 [1/1] (0.00ns)   --->   "%tmp_37 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 280, i32 287)" [action_uppercase.cpp:55]
+ST_10 : Operation 214 [1/1] (0.00ns)   --->   "%tmp_38 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 288, i32 295)" [action_uppercase.cpp:55]
+ST_10 : Operation 215 [1/1] (0.00ns)   --->   "%tmp_39 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 296, i32 303)" [action_uppercase.cpp:55]
+ST_10 : Operation 216 [1/1] (0.00ns)   --->   "%tmp_40 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 304, i32 311)" [action_uppercase.cpp:55]
+ST_10 : Operation 217 [1/1] (0.00ns)   --->   "%tmp_41 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 312, i32 319)" [action_uppercase.cpp:55]
+ST_10 : Operation 218 [1/1] (0.00ns)   --->   "%tmp_42 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 320, i32 327)" [action_uppercase.cpp:55]
+ST_10 : Operation 219 [1/1] (0.00ns)   --->   "%tmp_43 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 328, i32 335)" [action_uppercase.cpp:55]
+ST_10 : Operation 220 [1/1] (0.00ns)   --->   "%tmp_44 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 336, i32 343)" [action_uppercase.cpp:55]
+ST_10 : Operation 221 [1/1] (0.00ns)   --->   "%tmp_45 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 344, i32 351)" [action_uppercase.cpp:55]
+ST_10 : Operation 222 [1/1] (0.00ns)   --->   "%tmp_46 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 352, i32 359)" [action_uppercase.cpp:55]
+ST_10 : Operation 223 [1/1] (0.00ns)   --->   "%tmp_47 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 360, i32 367)" [action_uppercase.cpp:55]
+ST_10 : Operation 224 [1/1] (0.00ns)   --->   "%tmp_48 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 368, i32 375)" [action_uppercase.cpp:55]
+ST_10 : Operation 225 [1/1] (0.00ns)   --->   "%tmp_49 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 376, i32 383)" [action_uppercase.cpp:55]
+ST_10 : Operation 226 [1/1] (0.00ns)   --->   "%tmp_50 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 384, i32 391)" [action_uppercase.cpp:55]
+ST_10 : Operation 227 [1/1] (0.00ns)   --->   "%tmp_51 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 392, i32 399)" [action_uppercase.cpp:55]
+ST_10 : Operation 228 [1/1] (0.00ns)   --->   "%tmp_52 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 400, i32 407)" [action_uppercase.cpp:55]
+ST_10 : Operation 229 [1/1] (0.00ns)   --->   "%tmp_53 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 408, i32 415)" [action_uppercase.cpp:55]
+ST_10 : Operation 230 [1/1] (0.00ns)   --->   "%tmp_54 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 416, i32 423)" [action_uppercase.cpp:55]
+ST_10 : Operation 231 [1/1] (0.00ns)   --->   "%tmp_55 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 424, i32 431)" [action_uppercase.cpp:55]
+ST_10 : Operation 232 [1/1] (0.00ns)   --->   "%tmp_56 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 432, i32 439)" [action_uppercase.cpp:55]
+ST_10 : Operation 233 [1/1] (0.00ns)   --->   "%tmp_57 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 440, i32 447)" [action_uppercase.cpp:55]
+ST_10 : Operation 234 [1/1] (0.00ns)   --->   "%tmp_58 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 448, i32 455)" [action_uppercase.cpp:55]
+ST_10 : Operation 235 [1/1] (0.00ns)   --->   "%tmp_59 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 456, i32 463)" [action_uppercase.cpp:55]
+ST_10 : Operation 236 [1/1] (0.00ns)   --->   "%tmp_60 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 464, i32 471)" [action_uppercase.cpp:55]
+ST_10 : Operation 237 [1/1] (0.00ns)   --->   "%tmp_61 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 472, i32 479)" [action_uppercase.cpp:55]
+ST_10 : Operation 238 [1/1] (0.00ns)   --->   "%tmp_62 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 480, i32 487)" [action_uppercase.cpp:55]
+ST_10 : Operation 239 [1/1] (0.00ns)   --->   "%tmp_63 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 488, i32 495)" [action_uppercase.cpp:55]
+ST_10 : Operation 240 [1/1] (0.00ns)   --->   "%tmp_64 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 496, i32 503)" [action_uppercase.cpp:55]
+ST_10 : Operation 241 [1/1] (0.00ns)   --->   "%tmp_65 = call i8 @_ssdm_op_PartSelect.i8.i512.i32.i32(i512 %dout_gmem_V_addr_rea, i32 504, i32 511)" [action_uppercase.cpp:55]
+
+ <State 11> : 0.59ns
+ST_11 : Operation 242 [1/1] (0.59ns)   --->   "store i8 %tmp_72, i8* %text_addr, align 16" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_11 : Operation 243 [1/1] (0.59ns)   --->   "store i8 %tmp_4, i8* %text_addr_1, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 12> : 0.59ns
+ST_12 : Operation 244 [1/1] (0.59ns)   --->   "store i8 %tmp_6, i8* %text_addr_2, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_12 : Operation 245 [1/1] (0.59ns)   --->   "store i8 %tmp_8, i8* %text_addr_3, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 13> : 0.59ns
+ST_13 : Operation 246 [1/1] (0.59ns)   --->   "store i8 %tmp_s, i8* %text_addr_4, align 4" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_13 : Operation 247 [1/1] (0.59ns)   --->   "store i8 %tmp_5, i8* %text_addr_5, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 14> : 0.59ns
+ST_14 : Operation 248 [1/1] (0.59ns)   --->   "store i8 %tmp_7, i8* %text_addr_6, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_14 : Operation 249 [1/1] (0.59ns)   --->   "store i8 %tmp_9, i8* %text_addr_7, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 15> : 0.59ns
+ST_15 : Operation 250 [1/1] (0.59ns)   --->   "store i8 %tmp_10, i8* %text_addr_8, align 8" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_15 : Operation 251 [1/1] (0.59ns)   --->   "store i8 %tmp_11, i8* %text_addr_9, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 16> : 0.59ns
+ST_16 : Operation 252 [1/1] (0.59ns)   --->   "store i8 %tmp_12, i8* %text_addr_10, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_16 : Operation 253 [1/1] (0.59ns)   --->   "store i8 %tmp_13, i8* %text_addr_11, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 17> : 0.59ns
+ST_17 : Operation 254 [1/1] (0.59ns)   --->   "store i8 %tmp_14, i8* %text_addr_12, align 4" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_17 : Operation 255 [1/1] (0.59ns)   --->   "store i8 %tmp_15, i8* %text_addr_13, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 18> : 0.59ns
+ST_18 : Operation 256 [1/1] (0.59ns)   --->   "store i8 %tmp_16, i8* %text_addr_14, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_18 : Operation 257 [1/1] (0.59ns)   --->   "store i8 %tmp_17, i8* %text_addr_15, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 19> : 0.59ns
+ST_19 : Operation 258 [1/1] (0.59ns)   --->   "store i8 %tmp_18, i8* %text_addr_16, align 16" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_19 : Operation 259 [1/1] (0.59ns)   --->   "store i8 %tmp_19, i8* %text_addr_17, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 20> : 0.59ns
+ST_20 : Operation 260 [1/1] (0.59ns)   --->   "store i8 %tmp_20, i8* %text_addr_18, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_20 : Operation 261 [1/1] (0.59ns)   --->   "store i8 %tmp_21, i8* %text_addr_19, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 21> : 0.59ns
+ST_21 : Operation 262 [1/1] (0.59ns)   --->   "store i8 %tmp_22, i8* %text_addr_20, align 4" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_21 : Operation 263 [1/1] (0.59ns)   --->   "store i8 %tmp_23, i8* %text_addr_21, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 22> : 0.59ns
+ST_22 : Operation 264 [1/1] (0.59ns)   --->   "store i8 %tmp_24, i8* %text_addr_22, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_22 : Operation 265 [1/1] (0.59ns)   --->   "store i8 %tmp_25, i8* %text_addr_23, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 23> : 0.59ns
+ST_23 : Operation 266 [1/1] (0.59ns)   --->   "store i8 %tmp_26, i8* %text_addr_24, align 8" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_23 : Operation 267 [1/1] (0.59ns)   --->   "store i8 %tmp_27, i8* %text_addr_25, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 24> : 0.59ns
+ST_24 : Operation 268 [1/1] (0.59ns)   --->   "store i8 %tmp_28, i8* %text_addr_26, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_24 : Operation 269 [1/1] (0.59ns)   --->   "store i8 %tmp_29, i8* %text_addr_27, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 25> : 0.59ns
+ST_25 : Operation 270 [1/1] (0.59ns)   --->   "store i8 %tmp_30, i8* %text_addr_28, align 4" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_25 : Operation 271 [1/1] (0.59ns)   --->   "store i8 %tmp_31, i8* %text_addr_29, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 26> : 0.59ns
+ST_26 : Operation 272 [1/1] (0.59ns)   --->   "store i8 %tmp_32, i8* %text_addr_30, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_26 : Operation 273 [1/1] (0.59ns)   --->   "store i8 %tmp_33, i8* %text_addr_31, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 27> : 0.59ns
+ST_27 : Operation 274 [1/1] (0.59ns)   --->   "store i8 %tmp_34, i8* %text_addr_32, align 16" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_27 : Operation 275 [1/1] (0.59ns)   --->   "store i8 %tmp_35, i8* %text_addr_33, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 28> : 0.59ns
+ST_28 : Operation 276 [1/1] (0.59ns)   --->   "store i8 %tmp_36, i8* %text_addr_34, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_28 : Operation 277 [1/1] (0.59ns)   --->   "store i8 %tmp_37, i8* %text_addr_35, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 29> : 0.59ns
+ST_29 : Operation 278 [1/1] (0.59ns)   --->   "store i8 %tmp_38, i8* %text_addr_36, align 4" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_29 : Operation 279 [1/1] (0.59ns)   --->   "store i8 %tmp_39, i8* %text_addr_37, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 30> : 0.59ns
+ST_30 : Operation 280 [1/1] (0.59ns)   --->   "store i8 %tmp_40, i8* %text_addr_38, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_30 : Operation 281 [1/1] (0.59ns)   --->   "store i8 %tmp_41, i8* %text_addr_39, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 31> : 0.59ns
+ST_31 : Operation 282 [1/1] (0.59ns)   --->   "store i8 %tmp_42, i8* %text_addr_40, align 8" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_31 : Operation 283 [1/1] (0.59ns)   --->   "store i8 %tmp_43, i8* %text_addr_41, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 32> : 0.59ns
+ST_32 : Operation 284 [1/1] (0.59ns)   --->   "store i8 %tmp_44, i8* %text_addr_42, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_32 : Operation 285 [1/1] (0.59ns)   --->   "store i8 %tmp_45, i8* %text_addr_43, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 33> : 0.59ns
+ST_33 : Operation 286 [1/1] (0.59ns)   --->   "store i8 %tmp_46, i8* %text_addr_44, align 4" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_33 : Operation 287 [1/1] (0.59ns)   --->   "store i8 %tmp_47, i8* %text_addr_45, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 34> : 0.59ns
+ST_34 : Operation 288 [1/1] (0.59ns)   --->   "store i8 %tmp_48, i8* %text_addr_46, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_34 : Operation 289 [1/1] (0.59ns)   --->   "store i8 %tmp_49, i8* %text_addr_47, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 35> : 0.59ns
+ST_35 : Operation 290 [1/1] (0.59ns)   --->   "store i8 %tmp_50, i8* %text_addr_48, align 16" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_35 : Operation 291 [1/1] (0.59ns)   --->   "store i8 %tmp_51, i8* %text_addr_49, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 36> : 0.59ns
+ST_36 : Operation 292 [1/1] (0.59ns)   --->   "store i8 %tmp_52, i8* %text_addr_50, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_36 : Operation 293 [1/1] (0.59ns)   --->   "store i8 %tmp_53, i8* %text_addr_51, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 37> : 0.59ns
+ST_37 : Operation 294 [1/1] (0.59ns)   --->   "store i8 %tmp_54, i8* %text_addr_52, align 4" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_37 : Operation 295 [1/1] (0.59ns)   --->   "store i8 %tmp_55, i8* %text_addr_53, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 38> : 0.59ns
+ST_38 : Operation 296 [1/1] (0.59ns)   --->   "store i8 %tmp_56, i8* %text_addr_54, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_38 : Operation 297 [1/1] (0.59ns)   --->   "store i8 %tmp_57, i8* %text_addr_55, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 39> : 0.59ns
+ST_39 : Operation 298 [1/1] (0.59ns)   --->   "store i8 %tmp_58, i8* %text_addr_56, align 8" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_39 : Operation 299 [1/1] (0.59ns)   --->   "store i8 %tmp_59, i8* %text_addr_57, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 40> : 0.59ns
+ST_40 : Operation 300 [1/1] (0.59ns)   --->   "store i8 %tmp_60, i8* %text_addr_58, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_40 : Operation 301 [1/1] (0.59ns)   --->   "store i8 %tmp_61, i8* %text_addr_59, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 41> : 0.59ns
+ST_41 : Operation 302 [1/1] (0.59ns)   --->   "store i8 %tmp_62, i8* %text_addr_60, align 4" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_41 : Operation 303 [1/1] (0.59ns)   --->   "store i8 %tmp_63, i8* %text_addr_61, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 42> : 1.21ns
+ST_42 : Operation 304 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str10) nounwind" [action_uppercase.cpp:46]
+ST_42 : Operation 305 [1/1] (0.00ns)   --->   "%tmp_3 = call i32 (...)* @_ssdm_op_SpecRegionBegin([10 x i8]* @p_str10)" [action_uppercase.cpp:46]
+ST_42 : Operation 306 [1/1] (0.00ns)   --->   "%tmp_1 = call i26 @_ssdm_op_PartSelect.i26.i32.i32.i32(i32 %size1, i32 6, i32 31)" [action_uppercase.cpp:52]
+ST_42 : Operation 307 [1/1] (0.79ns)   --->   "%icmp = icmp eq i26 %tmp_1, 0" [action_uppercase.cpp:52]   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 308 [1/1] (0.00ns)   --->   "%tmp_2 = trunc i32 %size1 to i7" [action_uppercase.cpp:46]
+ST_42 : Operation 309 [1/1] (0.42ns)   --->   "%bytes_to_transfer = select i1 %icmp, i7 %tmp_2, i7 -64" [action_uppercase.cpp:52]   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.42> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_42 : Operation 310 [1/1] (0.00ns)   --->   "%bytes_to_transfer_ca = zext i7 %bytes_to_transfer to i32" [action_uppercase.cpp:52]
+ST_42 : Operation 311 [1/1] (0.59ns)   --->   "store i8 %tmp_64, i8* %text_addr_62, align 2" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_42 : Operation 312 [1/1] (0.59ns)   --->   "store i8 %tmp_65, i8* %text_addr_63, align 1" [action_uppercase.cpp:55]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_42 : Operation 313 [1/1] (0.60ns)   --->   "br label %3" [action_uppercase.cpp:59]
+
+ <State 43> : 1.15ns
+ST_43 : Operation 314 [1/1] (0.00ns)   --->   "%i = phi i7 [ 0, %2 ], [ %i_1, %._crit_edge ]"
+ST_43 : Operation 315 [1/1] (0.59ns)   --->   "%tmp_66 = icmp eq i7 %i, -64" [action_uppercase.cpp:59]   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 316 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 64, i64 64, i64 64)"
+ST_43 : Operation 317 [1/1] (0.70ns)   --->   "%i_1 = add i7 %i, 1" [action_uppercase.cpp:59]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 318 [1/1] (0.00ns)   --->   "br i1 %tmp_66, label %6, label %4" [action_uppercase.cpp:59]
+ST_43 : Operation 319 [1/1] (0.00ns)   --->   "%tmp_68 = zext i7 %i to i64" [action_uppercase.cpp:61]
+ST_43 : Operation 320 [1/1] (0.00ns)   --->   "%text_addr_64 = getelementptr inbounds [64 x i8]* %text, i64 0, i64 %tmp_68" [action_uppercase.cpp:61]
+ST_43 : Operation 321 [2/2] (0.59ns)   --->   "%text_load_64 = load i8* %text_addr_64, align 1" [action_uppercase.cpp:61]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_43 : Operation 322 [1/1] (1.14ns)   --->   "%sum3 = add i64 %o_idx1, %dout_gmem_V_offset_c" [action_uppercase.cpp:42]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 323 [2/2] (0.59ns)   --->   "%text_load = load i8* %text_addr, align 16" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_43 : Operation 324 [2/2] (0.59ns)   --->   "%text_load_1 = load i8* %text_addr_1, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_43 : Operation 325 [1/1] (0.88ns)   --->   "%size = sub i32 %size1, %bytes_to_transfer_ca" [action_uppercase.cpp:68]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 326 [1/1] (1.14ns)   --->   "%i_idx_1 = add i64 %i_idx1, 1" [action_uppercase.cpp:69]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 327 [1/1] (1.14ns)   --->   "%o_idx_1 = add i64 %o_idx1, 1" [action_uppercase.cpp:70]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+ <State 44> : 1.89ns
+ST_44 : Operation 328 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([21 x i8]* @p_str11) nounwind" [action_uppercase.cpp:59]
+ST_44 : Operation 329 [1/2] (0.59ns)   --->   "%text_load_64 = load i8* %text_addr_64, align 1" [action_uppercase.cpp:61]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_44 : Operation 330 [1/1] (0.58ns)   --->   "%tmp_69 = icmp sgt i8 %text_load_64, 96" [action_uppercase.cpp:61]   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_44 : Operation 331 [1/1] (0.58ns)   --->   "%tmp_70 = icmp slt i8 %text_load_64, 123" [action_uppercase.cpp:61]   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_44 : Operation 332 [1/1] (0.33ns)   --->   "%or_cond = and i1 %tmp_69, %tmp_70" [action_uppercase.cpp:61]   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_44 : Operation 333 [1/1] (0.00ns)   --->   "br i1 %or_cond, label %5, label %._crit_edge" [action_uppercase.cpp:61]
+ST_44 : Operation 334 [1/1] (0.70ns)   --->   "%tmp_71 = add i8 %text_load_64, -32" [action_uppercase.cpp:62]   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_44 : Operation 335 [1/1] (0.59ns)   --->   "store i8 %tmp_71, i8* %text_addr_64, align 1" [action_uppercase.cpp:62]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_44 : Operation 336 [1/1] (0.00ns)   --->   "br label %._crit_edge" [action_uppercase.cpp:62]
+ST_44 : Operation 337 [1/1] (0.00ns)   --->   "br label %3" [action_uppercase.cpp:59]
+
+ <State 45> : 0.59ns
+ST_45 : Operation 338 [1/2] (0.59ns)   --->   "%text_load = load i8* %text_addr, align 16" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_45 : Operation 339 [1/2] (0.59ns)   --->   "%text_load_1 = load i8* %text_addr_1, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_45 : Operation 340 [2/2] (0.59ns)   --->   "%text_load_2 = load i8* %text_addr_2, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_45 : Operation 341 [2/2] (0.59ns)   --->   "%text_load_3 = load i8* %text_addr_3, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 46> : 0.59ns
+ST_46 : Operation 342 [1/2] (0.59ns)   --->   "%text_load_2 = load i8* %text_addr_2, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_46 : Operation 343 [1/2] (0.59ns)   --->   "%text_load_3 = load i8* %text_addr_3, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_46 : Operation 344 [2/2] (0.59ns)   --->   "%text_load_4 = load i8* %text_addr_4, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_46 : Operation 345 [2/2] (0.59ns)   --->   "%text_load_5 = load i8* %text_addr_5, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 47> : 0.59ns
+ST_47 : Operation 346 [1/2] (0.59ns)   --->   "%text_load_4 = load i8* %text_addr_4, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_47 : Operation 347 [1/2] (0.59ns)   --->   "%text_load_5 = load i8* %text_addr_5, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_47 : Operation 348 [2/2] (0.59ns)   --->   "%text_load_6 = load i8* %text_addr_6, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_47 : Operation 349 [2/2] (0.59ns)   --->   "%text_load_7 = load i8* %text_addr_7, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 48> : 0.59ns
+ST_48 : Operation 350 [1/2] (0.59ns)   --->   "%text_load_6 = load i8* %text_addr_6, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_48 : Operation 351 [1/2] (0.59ns)   --->   "%text_load_7 = load i8* %text_addr_7, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_48 : Operation 352 [2/2] (0.59ns)   --->   "%text_load_8 = load i8* %text_addr_8, align 8" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_48 : Operation 353 [2/2] (0.59ns)   --->   "%text_load_9 = load i8* %text_addr_9, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 49> : 0.59ns
+ST_49 : Operation 354 [1/2] (0.59ns)   --->   "%text_load_8 = load i8* %text_addr_8, align 8" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_49 : Operation 355 [1/2] (0.59ns)   --->   "%text_load_9 = load i8* %text_addr_9, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_49 : Operation 356 [2/2] (0.59ns)   --->   "%text_load_10 = load i8* %text_addr_10, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_49 : Operation 357 [2/2] (0.59ns)   --->   "%text_load_11 = load i8* %text_addr_11, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 50> : 0.59ns
+ST_50 : Operation 358 [1/2] (0.59ns)   --->   "%text_load_10 = load i8* %text_addr_10, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_50 : Operation 359 [1/2] (0.59ns)   --->   "%text_load_11 = load i8* %text_addr_11, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_50 : Operation 360 [2/2] (0.59ns)   --->   "%text_load_12 = load i8* %text_addr_12, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_50 : Operation 361 [2/2] (0.59ns)   --->   "%text_load_13 = load i8* %text_addr_13, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 51> : 0.59ns
+ST_51 : Operation 362 [1/2] (0.59ns)   --->   "%text_load_12 = load i8* %text_addr_12, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_51 : Operation 363 [1/2] (0.59ns)   --->   "%text_load_13 = load i8* %text_addr_13, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_51 : Operation 364 [2/2] (0.59ns)   --->   "%text_load_14 = load i8* %text_addr_14, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_51 : Operation 365 [2/2] (0.59ns)   --->   "%text_load_15 = load i8* %text_addr_15, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 52> : 0.59ns
+ST_52 : Operation 366 [1/2] (0.59ns)   --->   "%text_load_14 = load i8* %text_addr_14, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_52 : Operation 367 [1/2] (0.59ns)   --->   "%text_load_15 = load i8* %text_addr_15, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_52 : Operation 368 [2/2] (0.59ns)   --->   "%text_load_16 = load i8* %text_addr_16, align 16" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_52 : Operation 369 [2/2] (0.59ns)   --->   "%text_load_17 = load i8* %text_addr_17, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 53> : 0.59ns
+ST_53 : Operation 370 [1/2] (0.59ns)   --->   "%text_load_16 = load i8* %text_addr_16, align 16" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_53 : Operation 371 [1/2] (0.59ns)   --->   "%text_load_17 = load i8* %text_addr_17, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_53 : Operation 372 [2/2] (0.59ns)   --->   "%text_load_18 = load i8* %text_addr_18, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_53 : Operation 373 [2/2] (0.59ns)   --->   "%text_load_19 = load i8* %text_addr_19, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 54> : 0.59ns
+ST_54 : Operation 374 [1/2] (0.59ns)   --->   "%text_load_18 = load i8* %text_addr_18, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_54 : Operation 375 [1/2] (0.59ns)   --->   "%text_load_19 = load i8* %text_addr_19, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_54 : Operation 376 [2/2] (0.59ns)   --->   "%text_load_20 = load i8* %text_addr_20, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_54 : Operation 377 [2/2] (0.59ns)   --->   "%text_load_21 = load i8* %text_addr_21, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 55> : 0.59ns
+ST_55 : Operation 378 [1/2] (0.59ns)   --->   "%text_load_20 = load i8* %text_addr_20, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_55 : Operation 379 [1/2] (0.59ns)   --->   "%text_load_21 = load i8* %text_addr_21, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_55 : Operation 380 [2/2] (0.59ns)   --->   "%text_load_22 = load i8* %text_addr_22, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_55 : Operation 381 [2/2] (0.59ns)   --->   "%text_load_23 = load i8* %text_addr_23, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 56> : 0.59ns
+ST_56 : Operation 382 [1/2] (0.59ns)   --->   "%text_load_22 = load i8* %text_addr_22, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_56 : Operation 383 [1/2] (0.59ns)   --->   "%text_load_23 = load i8* %text_addr_23, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_56 : Operation 384 [2/2] (0.59ns)   --->   "%text_load_24 = load i8* %text_addr_24, align 8" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_56 : Operation 385 [2/2] (0.59ns)   --->   "%text_load_25 = load i8* %text_addr_25, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 57> : 0.59ns
+ST_57 : Operation 386 [1/2] (0.59ns)   --->   "%text_load_24 = load i8* %text_addr_24, align 8" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_57 : Operation 387 [1/2] (0.59ns)   --->   "%text_load_25 = load i8* %text_addr_25, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_57 : Operation 388 [2/2] (0.59ns)   --->   "%text_load_26 = load i8* %text_addr_26, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_57 : Operation 389 [2/2] (0.59ns)   --->   "%text_load_27 = load i8* %text_addr_27, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 58> : 0.59ns
+ST_58 : Operation 390 [1/2] (0.59ns)   --->   "%text_load_26 = load i8* %text_addr_26, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_58 : Operation 391 [1/2] (0.59ns)   --->   "%text_load_27 = load i8* %text_addr_27, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_58 : Operation 392 [2/2] (0.59ns)   --->   "%text_load_28 = load i8* %text_addr_28, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_58 : Operation 393 [2/2] (0.59ns)   --->   "%text_load_29 = load i8* %text_addr_29, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 59> : 0.59ns
+ST_59 : Operation 394 [1/2] (0.59ns)   --->   "%text_load_28 = load i8* %text_addr_28, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_59 : Operation 395 [1/2] (0.59ns)   --->   "%text_load_29 = load i8* %text_addr_29, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_59 : Operation 396 [2/2] (0.59ns)   --->   "%text_load_30 = load i8* %text_addr_30, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_59 : Operation 397 [2/2] (0.59ns)   --->   "%text_load_31 = load i8* %text_addr_31, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 60> : 0.59ns
+ST_60 : Operation 398 [1/2] (0.59ns)   --->   "%text_load_30 = load i8* %text_addr_30, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_60 : Operation 399 [1/2] (0.59ns)   --->   "%text_load_31 = load i8* %text_addr_31, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_60 : Operation 400 [2/2] (0.59ns)   --->   "%text_load_32 = load i8* %text_addr_32, align 16" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_60 : Operation 401 [2/2] (0.59ns)   --->   "%text_load_33 = load i8* %text_addr_33, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 61> : 0.59ns
+ST_61 : Operation 402 [1/2] (0.59ns)   --->   "%text_load_32 = load i8* %text_addr_32, align 16" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_61 : Operation 403 [1/2] (0.59ns)   --->   "%text_load_33 = load i8* %text_addr_33, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_61 : Operation 404 [2/2] (0.59ns)   --->   "%text_load_34 = load i8* %text_addr_34, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_61 : Operation 405 [2/2] (0.59ns)   --->   "%text_load_35 = load i8* %text_addr_35, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 62> : 0.59ns
+ST_62 : Operation 406 [1/2] (0.59ns)   --->   "%text_load_34 = load i8* %text_addr_34, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_62 : Operation 407 [1/2] (0.59ns)   --->   "%text_load_35 = load i8* %text_addr_35, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_62 : Operation 408 [2/2] (0.59ns)   --->   "%text_load_36 = load i8* %text_addr_36, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_62 : Operation 409 [2/2] (0.59ns)   --->   "%text_load_37 = load i8* %text_addr_37, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 63> : 0.59ns
+ST_63 : Operation 410 [1/2] (0.59ns)   --->   "%text_load_36 = load i8* %text_addr_36, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_63 : Operation 411 [1/2] (0.59ns)   --->   "%text_load_37 = load i8* %text_addr_37, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_63 : Operation 412 [2/2] (0.59ns)   --->   "%text_load_38 = load i8* %text_addr_38, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_63 : Operation 413 [2/2] (0.59ns)   --->   "%text_load_39 = load i8* %text_addr_39, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 64> : 0.59ns
+ST_64 : Operation 414 [1/2] (0.59ns)   --->   "%text_load_38 = load i8* %text_addr_38, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_64 : Operation 415 [1/2] (0.59ns)   --->   "%text_load_39 = load i8* %text_addr_39, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_64 : Operation 416 [2/2] (0.59ns)   --->   "%text_load_40 = load i8* %text_addr_40, align 8" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_64 : Operation 417 [2/2] (0.59ns)   --->   "%text_load_41 = load i8* %text_addr_41, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 65> : 0.59ns
+ST_65 : Operation 418 [1/2] (0.59ns)   --->   "%text_load_40 = load i8* %text_addr_40, align 8" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_65 : Operation 419 [1/2] (0.59ns)   --->   "%text_load_41 = load i8* %text_addr_41, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_65 : Operation 420 [2/2] (0.59ns)   --->   "%text_load_42 = load i8* %text_addr_42, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_65 : Operation 421 [2/2] (0.59ns)   --->   "%text_load_43 = load i8* %text_addr_43, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 66> : 0.59ns
+ST_66 : Operation 422 [1/2] (0.59ns)   --->   "%text_load_42 = load i8* %text_addr_42, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_66 : Operation 423 [1/2] (0.59ns)   --->   "%text_load_43 = load i8* %text_addr_43, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_66 : Operation 424 [2/2] (0.59ns)   --->   "%text_load_44 = load i8* %text_addr_44, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_66 : Operation 425 [2/2] (0.59ns)   --->   "%text_load_45 = load i8* %text_addr_45, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 67> : 0.59ns
+ST_67 : Operation 426 [1/2] (0.59ns)   --->   "%text_load_44 = load i8* %text_addr_44, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_67 : Operation 427 [1/2] (0.59ns)   --->   "%text_load_45 = load i8* %text_addr_45, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_67 : Operation 428 [2/2] (0.59ns)   --->   "%text_load_46 = load i8* %text_addr_46, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_67 : Operation 429 [2/2] (0.59ns)   --->   "%text_load_47 = load i8* %text_addr_47, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 68> : 0.59ns
+ST_68 : Operation 430 [1/2] (0.59ns)   --->   "%text_load_46 = load i8* %text_addr_46, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_68 : Operation 431 [1/2] (0.59ns)   --->   "%text_load_47 = load i8* %text_addr_47, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_68 : Operation 432 [2/2] (0.59ns)   --->   "%text_load_48 = load i8* %text_addr_48, align 16" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_68 : Operation 433 [2/2] (0.59ns)   --->   "%text_load_49 = load i8* %text_addr_49, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 69> : 0.59ns
+ST_69 : Operation 434 [1/2] (0.59ns)   --->   "%text_load_48 = load i8* %text_addr_48, align 16" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_69 : Operation 435 [1/2] (0.59ns)   --->   "%text_load_49 = load i8* %text_addr_49, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_69 : Operation 436 [2/2] (0.59ns)   --->   "%text_load_50 = load i8* %text_addr_50, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_69 : Operation 437 [2/2] (0.59ns)   --->   "%text_load_51 = load i8* %text_addr_51, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 70> : 0.59ns
+ST_70 : Operation 438 [1/2] (0.59ns)   --->   "%text_load_50 = load i8* %text_addr_50, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_70 : Operation 439 [1/2] (0.59ns)   --->   "%text_load_51 = load i8* %text_addr_51, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_70 : Operation 440 [2/2] (0.59ns)   --->   "%text_load_52 = load i8* %text_addr_52, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_70 : Operation 441 [2/2] (0.59ns)   --->   "%text_load_53 = load i8* %text_addr_53, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 71> : 0.59ns
+ST_71 : Operation 442 [1/2] (0.59ns)   --->   "%text_load_52 = load i8* %text_addr_52, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_71 : Operation 443 [1/2] (0.59ns)   --->   "%text_load_53 = load i8* %text_addr_53, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_71 : Operation 444 [2/2] (0.59ns)   --->   "%text_load_54 = load i8* %text_addr_54, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_71 : Operation 445 [2/2] (0.59ns)   --->   "%text_load_55 = load i8* %text_addr_55, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 72> : 0.59ns
+ST_72 : Operation 446 [1/2] (0.59ns)   --->   "%text_load_54 = load i8* %text_addr_54, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_72 : Operation 447 [1/2] (0.59ns)   --->   "%text_load_55 = load i8* %text_addr_55, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_72 : Operation 448 [2/2] (0.59ns)   --->   "%text_load_56 = load i8* %text_addr_56, align 8" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_72 : Operation 449 [2/2] (0.59ns)   --->   "%text_load_57 = load i8* %text_addr_57, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 73> : 0.59ns
+ST_73 : Operation 450 [1/2] (0.59ns)   --->   "%text_load_56 = load i8* %text_addr_56, align 8" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_73 : Operation 451 [1/2] (0.59ns)   --->   "%text_load_57 = load i8* %text_addr_57, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_73 : Operation 452 [2/2] (0.59ns)   --->   "%text_load_58 = load i8* %text_addr_58, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_73 : Operation 453 [2/2] (0.59ns)   --->   "%text_load_59 = load i8* %text_addr_59, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 74> : 0.59ns
+ST_74 : Operation 454 [1/2] (0.59ns)   --->   "%text_load_58 = load i8* %text_addr_58, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_74 : Operation 455 [1/2] (0.59ns)   --->   "%text_load_59 = load i8* %text_addr_59, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_74 : Operation 456 [2/2] (0.59ns)   --->   "%text_load_60 = load i8* %text_addr_60, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_74 : Operation 457 [2/2] (0.59ns)   --->   "%text_load_61 = load i8* %text_addr_61, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 75> : 0.59ns
+ST_75 : Operation 458 [1/2] (0.59ns)   --->   "%text_load_60 = load i8* %text_addr_60, align 4" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_75 : Operation 459 [1/2] (0.59ns)   --->   "%text_load_61 = load i8* %text_addr_61, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_75 : Operation 460 [2/2] (0.59ns)   --->   "%text_load_62 = load i8* %text_addr_62, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_75 : Operation 461 [2/2] (0.59ns)   --->   "%text_load_63 = load i8* %text_addr_63, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+
+ <State 76> : 3.50ns
+ST_76 : Operation 462 [1/1] (0.00ns)   --->   "%dout_gmem_V_addr_1 = getelementptr i512* %din_gmem_V, i64 %sum3" [action_uppercase.cpp:66]
+ST_76 : Operation 463 [1/2] (0.59ns)   --->   "%text_load_62 = load i8* %text_addr_62, align 2" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_76 : Operation 464 [1/2] (0.59ns)   --->   "%text_load_63 = load i8* %text_addr_63, align 1" [action_uppercase.cpp:66]   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 64> <RAM>
+ST_76 : Operation 465 [1/1] (3.50ns)   --->   "%dout_gmem_V_addr_1_r = call i1 @_ssdm_op_WriteReq.m_axi.i512P(i512* %dout_gmem_V_addr_1, i32 1)" [action_uppercase.cpp:66]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 77> : 3.50ns
+ST_77 : Operation 466 [1/1] (0.00ns)   --->   "%tmp_67 = call i512 @_ssdm_op_BitConcatenate.i512.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8.i8(i8 %text_load_63, i8 %text_load_62, i8 %text_load_61, i8 %text_load_60, i8 %text_load_59, i8 %text_load_58, i8 %text_load_57, i8 %text_load_56, i8 %text_load_55, i8 %text_load_54, i8 %text_load_53, i8 %text_load_52, i8 %text_load_51, i8 %text_load_50, i8 %text_load_49, i8 %text_load_48, i8 %text_load_47, i8 %text_load_46, i8 %text_load_45, i8 %text_load_44, i8 %text_load_43, i8 %text_load_42, i8 %text_load_41, i8 %text_load_40, i8 %text_load_39, i8 %text_load_38, i8 %text_load_37, i8 %text_load_36, i8 %text_load_35, i8 %text_load_34, i8 %text_load_33, i8 %text_load_32, i8 %text_load_31, i8 %text_load_30, i8 %text_load_29, i8 %text_load_28, i8 %text_load_27, i8 %text_load_26, i8 %text_load_25, i8 %text_load_24, i8 %text_load_23, i8 %text_load_22, i8 %text_load_21, i8 %text_load_20, i8 %text_load_19, i8 %text_load_18, i8 %text_load_17, i8 %text_load_16, i8 %text_load_15, i8 %text_load_14, i8 %text_load_13, i8 %text_load_12, i8 %text_load_11, i8 %text_load_10, i8 %text_load_9, i8 %text_load_8, i8 %text_load_7, i8 %text_load_6, i8 %text_load_5, i8 %text_load_4, i8 %text_load_3, i8 %text_load_2, i8 %text_load_1, i8 %text_load)" [action_uppercase.cpp:66]
+ST_77 : Operation 467 [1/1] (3.50ns)   --->   "call void @_ssdm_op_Write.m_axi.i512P(i512* %dout_gmem_V_addr_1, i512 %tmp_67, i64 -1)" [action_uppercase.cpp:66]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 78> : 3.50ns
+ST_78 : Operation 468 [5/5] (3.50ns)   --->   "%dout_gmem_V_addr_1_r_1 = call i1 @_ssdm_op_WriteResp.m_axi.i512P(i512* %dout_gmem_V_addr_1)" [action_uppercase.cpp:66]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 79> : 3.50ns
+ST_79 : Operation 469 [4/5] (3.50ns)   --->   "%dout_gmem_V_addr_1_r_1 = call i1 @_ssdm_op_WriteResp.m_axi.i512P(i512* %dout_gmem_V_addr_1)" [action_uppercase.cpp:66]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 80> : 3.50ns
+ST_80 : Operation 470 [3/5] (3.50ns)   --->   "%dout_gmem_V_addr_1_r_1 = call i1 @_ssdm_op_WriteResp.m_axi.i512P(i512* %dout_gmem_V_addr_1)" [action_uppercase.cpp:66]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 81> : 3.50ns
+ST_81 : Operation 471 [2/5] (3.50ns)   --->   "%dout_gmem_V_addr_1_r_1 = call i1 @_ssdm_op_WriteResp.m_axi.i512P(i512* %dout_gmem_V_addr_1)" [action_uppercase.cpp:66]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+ <State 82> : 3.50ns
+ST_82 : Operation 472 [1/5] (3.50ns)   --->   "%dout_gmem_V_addr_1_r_1 = call i1 @_ssdm_op_WriteResp.m_axi.i512P(i512* %dout_gmem_V_addr_1)" [action_uppercase.cpp:66]   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_82 : Operation 473 [1/1] (0.00ns)   --->   "%empty_14 = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str10, i32 %tmp_3)" [action_uppercase.cpp:71]
+ST_82 : Operation 474 [1/1] (0.00ns)   --->   "br label %1" [action_uppercase.cpp:71]
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 4ns, clock uncertainty: 0.5ns.
+
+ <State 1>: 0.603ns
+The critical path consists of the following:
+	wire read on port 'act_reg_Data_out_add' [7]  (0 ns)
+	multiplexor before 'phi' operation ('size') with incoming values : ('act_reg.Data.in.size') ('size', action_uppercase.cpp:68) [87]  (0.603 ns)
+
+ <State 2>: 1.15ns
+The critical path consists of the following:
+	'phi' operation ('i_idx') with incoming values : ('i_idx', action_uppercase.cpp:41) ('i_idx', action_uppercase.cpp:69) [88]  (0 ns)
+	'add' operation ('sum', action_uppercase.cpp:41) [100]  (1.15 ns)
+
+ <State 3>: 3.5ns
+The critical path consists of the following:
+	'getelementptr' operation ('dout_gmem_V_addr', action_uppercase.cpp:55) [101]  (0 ns)
+	bus request on port 'din_gmem_V' (action_uppercase.cpp:55) [102]  (3.5 ns)
+
+ <State 4>: 3.5ns
+The critical path consists of the following:
+	bus request on port 'din_gmem_V' (action_uppercase.cpp:55) [102]  (3.5 ns)
+
+ <State 5>: 3.5ns
+The critical path consists of the following:
+	bus request on port 'din_gmem_V' (action_uppercase.cpp:55) [102]  (3.5 ns)
+
+ <State 6>: 3.5ns
+The critical path consists of the following:
+	bus request on port 'din_gmem_V' (action_uppercase.cpp:55) [102]  (3.5 ns)
+
+ <State 7>: 3.5ns
+The critical path consists of the following:
+	bus request on port 'din_gmem_V' (action_uppercase.cpp:55) [102]  (3.5 ns)
+
+ <State 8>: 3.5ns
+The critical path consists of the following:
+	bus request on port 'din_gmem_V' (action_uppercase.cpp:55) [102]  (3.5 ns)
+
+ <State 9>: 3.5ns
+The critical path consists of the following:
+	bus request on port 'din_gmem_V' (action_uppercase.cpp:55) [102]  (3.5 ns)
+
+ <State 10>: 3.5ns
+The critical path consists of the following:
+	bus read on port 'din_gmem_V' (action_uppercase.cpp:55) [103]  (3.5 ns)
+
+ <State 11>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_72', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [105]  (0.594 ns)
+
+ <State 12>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_6', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [109]  (0.594 ns)
+
+ <State 13>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_s', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [113]  (0.594 ns)
+
+ <State 14>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_7', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [117]  (0.594 ns)
+
+ <State 15>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_10', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [121]  (0.594 ns)
+
+ <State 16>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_12', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [125]  (0.594 ns)
+
+ <State 17>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_14', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [129]  (0.594 ns)
+
+ <State 18>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_16', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [133]  (0.594 ns)
+
+ <State 19>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_18', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [137]  (0.594 ns)
+
+ <State 20>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_20', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [141]  (0.594 ns)
+
+ <State 21>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_22', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [145]  (0.594 ns)
+
+ <State 22>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_24', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [149]  (0.594 ns)
+
+ <State 23>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_26', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [153]  (0.594 ns)
+
+ <State 24>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_28', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [157]  (0.594 ns)
+
+ <State 25>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_30', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [161]  (0.594 ns)
+
+ <State 26>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_32', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [165]  (0.594 ns)
+
+ <State 27>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_34', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [169]  (0.594 ns)
+
+ <State 28>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_36', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [173]  (0.594 ns)
+
+ <State 29>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_38', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [177]  (0.594 ns)
+
+ <State 30>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_40', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [181]  (0.594 ns)
+
+ <State 31>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_42', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [185]  (0.594 ns)
+
+ <State 32>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_44', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [189]  (0.594 ns)
+
+ <State 33>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_46', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [193]  (0.594 ns)
+
+ <State 34>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_48', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [197]  (0.594 ns)
+
+ <State 35>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_50', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [201]  (0.594 ns)
+
+ <State 36>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_52', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [205]  (0.594 ns)
+
+ <State 37>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_54', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [209]  (0.594 ns)
+
+ <State 38>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_56', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [213]  (0.594 ns)
+
+ <State 39>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_58', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [217]  (0.594 ns)
+
+ <State 40>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_60', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [221]  (0.594 ns)
+
+ <State 41>: 0.594ns
+The critical path consists of the following:
+	'store' operation (action_uppercase.cpp:55) of variable 'tmp_62', action_uppercase.cpp:55 on array 'text', action_uppercase.cpp:48 [225]  (0.594 ns)
+
+ <State 42>: 1.21ns
+The critical path consists of the following:
+	'icmp' operation ('icmp', action_uppercase.cpp:52) [96]  (0.79 ns)
+	'select' operation ('bytes_to_transfer', action_uppercase.cpp:52) [98]  (0.42 ns)
+
+ <State 43>: 1.15ns
+The critical path consists of the following:
+	'add' operation ('sum3', action_uppercase.cpp:42) [255]  (1.15 ns)
+
+ <State 44>: 1.89ns
+The critical path consists of the following:
+	'load' operation ('text_load_64', action_uppercase.cpp:61) on array 'text', action_uppercase.cpp:48 [243]  (0.594 ns)
+	'add' operation ('tmp_71', action_uppercase.cpp:62) [249]  (0.705 ns)
+	'store' operation (action_uppercase.cpp:62) of variable 'tmp_71', action_uppercase.cpp:62 on array 'text', action_uppercase.cpp:48 [250]  (0.594 ns)
+
+ <State 45>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [257]  (0.594 ns)
+
+ <State 46>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_2', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [259]  (0.594 ns)
+
+ <State 47>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_4', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [261]  (0.594 ns)
+
+ <State 48>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_6', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [263]  (0.594 ns)
+
+ <State 49>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_8', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [265]  (0.594 ns)
+
+ <State 50>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_10', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [267]  (0.594 ns)
+
+ <State 51>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_12', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [269]  (0.594 ns)
+
+ <State 52>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_14', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [271]  (0.594 ns)
+
+ <State 53>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_16', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [273]  (0.594 ns)
+
+ <State 54>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_18', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [275]  (0.594 ns)
+
+ <State 55>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_20', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [277]  (0.594 ns)
+
+ <State 56>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_22', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [279]  (0.594 ns)
+
+ <State 57>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_24', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [281]  (0.594 ns)
+
+ <State 58>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_26', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [283]  (0.594 ns)
+
+ <State 59>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_28', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [285]  (0.594 ns)
+
+ <State 60>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_30', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [287]  (0.594 ns)
+
+ <State 61>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_32', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [289]  (0.594 ns)
+
+ <State 62>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_34', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [291]  (0.594 ns)
+
+ <State 63>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_36', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [293]  (0.594 ns)
+
+ <State 64>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_38', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [295]  (0.594 ns)
+
+ <State 65>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_40', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [297]  (0.594 ns)
+
+ <State 66>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_42', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [299]  (0.594 ns)
+
+ <State 67>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_44', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [301]  (0.594 ns)
+
+ <State 68>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_46', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [303]  (0.594 ns)
+
+ <State 69>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_48', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [305]  (0.594 ns)
+
+ <State 70>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_50', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [307]  (0.594 ns)
+
+ <State 71>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_52', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [309]  (0.594 ns)
+
+ <State 72>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_54', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [311]  (0.594 ns)
+
+ <State 73>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_56', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [313]  (0.594 ns)
+
+ <State 74>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_58', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [315]  (0.594 ns)
+
+ <State 75>: 0.594ns
+The critical path consists of the following:
+	'load' operation ('text_load_60', action_uppercase.cpp:66) on array 'text', action_uppercase.cpp:48 [317]  (0.594 ns)
+
+ <State 76>: 3.5ns
+The critical path consists of the following:
+	'getelementptr' operation ('dout_gmem_V_addr_1', action_uppercase.cpp:66) [256]  (0 ns)
+	bus request on port 'din_gmem_V' (action_uppercase.cpp:66) [322]  (3.5 ns)
+
+ <State 77>: 3.5ns
+The critical path consists of the following:
+	bus write on port 'din_gmem_V' (action_uppercase.cpp:66) [323]  (3.5 ns)
+
+ <State 78>: 3.5ns
+The critical path consists of the following:
+	bus access on port 'din_gmem_V' (action_uppercase.cpp:66) [324]  (3.5 ns)
+
+ <State 79>: 3.5ns
+The critical path consists of the following:
+	bus access on port 'din_gmem_V' (action_uppercase.cpp:66) [324]  (3.5 ns)
+
+ <State 80>: 3.5ns
+The critical path consists of the following:
+	bus access on port 'din_gmem_V' (action_uppercase.cpp:66) [324]  (3.5 ns)
+
+ <State 81>: 3.5ns
+The critical path consists of the following:
+	bus access on port 'din_gmem_V' (action_uppercase.cpp:66) [324]  (3.5 ns)
+
+ <State 82>: 3.5ns
+The critical path consists of the following:
+	bus access on port 'din_gmem_V' (action_uppercase.cpp:66) [324]  (3.5 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+	State 39
+	State 40
+	State 41
+	State 42
+	State 43
+	State 44
+	State 45
+	State 46
+	State 47
+	State 48
+	State 49
+	State 50
+	State 51
+	State 52
+	State 53
+	State 54
+	State 55
+	State 56
+	State 57
+	State 58
+	State 59
+	State 60
+	State 61
+	State 62
+	State 63
+	State 64
+	State 65
+	State 66
+	State 67
+	State 68
+	State 69
+	State 70
+	State 71
+	State 72
+	State 73
+	State 74
+	State 75
+	State 76
+	State 77
+	State 78
+	State 79
+	State 80
+	State 81
+	State 82
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
