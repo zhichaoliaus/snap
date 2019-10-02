@@ -24,7 +24,7 @@ extern "C" {
 #endif
 
 /* This number is unique and is declared in ~snap/ActionTypes.md */
-#define CONVERTER_ACTION_TYPE 0x1014100F
+#define CONVERTER_ACTION_TYPE 0x10141010
 
 // single detector module is 1024 x 512 (~500,000 pixels)
 #define DETECTORX 1024
@@ -32,7 +32,7 @@ extern "C" {
 
 // 500k detector consists of 1 module, 4M detector consists of 8 modules, 10M of 20 modules
 #define NMODULES 1
-#define NFRAMES 20
+#define NFRAMES 2
 
 /* Data structure used to exchange information between action and application */
 /* Size limit is 108 Bytes */

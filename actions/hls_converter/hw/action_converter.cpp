@@ -85,8 +85,10 @@ void Convert(uint16_t in[4096], int16_t out[NMODULES*1030*514], uint16_t moduleN
     }
 }
 
+
 static void  int16_to_mbus(int16_t *table_of_int16_t, snap_membus_t *data_to_be_written)
 {
+#pragma HLS INLINE OFF
 	   for(int j = 0; j < NB_DW_PER_INT; j++)
 #pragma HLS UNROLL
 	   {
@@ -109,9 +111,9 @@ static int process_action(snap_membus_t *din_gmem,
 	addr_datain_idx = act_reg->Data.RawIn.addr >> ADDR_RIGHT_SHIFT;
 	addr_dataout_idx = act_reg->Data.ConvOut.addr >> ADDR_RIGHT_SHIFT;
 	
-	float PedeGain[size_matrix*7];
-	uint16_t DataIn[size_matrix*NFRAMES];
-	int16_t DataOut[sizeout_matrix*NFRAMES];
+	float PedeGain[DETECTORX*DETECTORY*NMODULES*7] = {0};
+	uint16_t DataIn[DETECTORX*DETECTORY*NMODULES*NFRAMES] = {0};
+	int16_t DataOut[NMODULES*1030*514*NFRAMES] = {0};
 
 /*
 	//memcpy((float*)PedeGain, din_gmem + addr_pede_idx, size_matrix*7*sizeof(float));
@@ -161,6 +163,12 @@ static int process_action(snap_membus_t *din_gmem,
 	DataOut[0] = 4;
 	DataOut[1] = 5;
 	DataOut[2] = 6;
+	DataOut[3] = 7;
+	DataOut[4] = 8;
+	DataOut[5] = 9;
+	DataOut[6] = 10;
+	DataOut[7] = 11;
+	DataOut[8] = 12;
 
 	//memcpy(dout_gmem + addr_dataout_idx, (int16_t*)DataOut, sizeout_matrix*NFRAMES*sizeof(int16_t));
 	uint32_t size_to_transfer, bytes_to_transfer;
