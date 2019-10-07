@@ -29,10 +29,12 @@ extern "C" {
 // single detector module is 1024 x 512 (~500,000 pixels)
 #define DETECTORX 1024
 #define DETECTORY 512
+#define DETECTOROX 1030
+#define DETECTOROY 514
 
 // 500k detector consists of 1 module, 4M detector consists of 8 modules, 10M of 20 modules
 #define NMODULES 1
-#define NFRAMES 2
+#define NFRAMES 1
 
 /* Data structure used to exchange information between action and application */
 /* Size limit is 108 Bytes */

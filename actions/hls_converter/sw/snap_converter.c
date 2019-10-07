@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
 	struct converter_job mjob;
 	const char *bin_dir = NULL;
 	const char *bin_ext[7] = {"/gainG0.bin", "/gainG1.bin", "/gainG2.bin", "/pedeG0.bin", "/pedeG1.bin", "/pedeG2.bin", "/pedeG0_RMS.bin"};
-	unsigned long timeout = 600;
+	unsigned long timeout = 2000;
 	struct timeval etime, stime;
 	size_t size_matrix = DETECTORX*DETECTORY*NMODULES;
 	size_t sizeout_matrix = NMODULES*1030*514;
@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
 	}
 
 	if (optind != argc) {
-		usage(argv[0]);
+		usage(argv[0]);00002b73ab92a000
 		exit(EXIT_FAILURE);
 	}
 	if (argc == 1) {       // to provide help when program is called without argument
