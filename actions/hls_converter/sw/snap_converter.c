@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
 	}
 
 	if (optind != argc) {
-		usage(argv[0]);00002b73ab92a000
+		usage(argv[0]);
 		exit(EXIT_FAILURE);
 	}
 	if (argc == 1) {       // to provide help when program is called without argument

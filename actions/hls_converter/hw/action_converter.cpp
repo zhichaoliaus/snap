@@ -38,15 +38,6 @@ void Convert(uint16_t in[4096], int16_t out[NMODULES*1030*514], uint16_t moduleN
    uint32_t pixel0 = moduleNumber * DETECTORX * DETECTORY + packetNumber * 4096; 
 
    size_t size_matrix = DETECTORX*DETECTORY*NMODULES;
-   /*
-   float *gainG0 = &addr_pede[0];
-   float *gainG1 = &addr_pede[0+size_matrix];
-   float *gainG2 = &addr_pede[0+size_matrix*2];
-   float *pedeG0 = &addr_pede[0+size_matrix*3];
-   float *pedeG1 = &addr_pede[0+size_matrix*4];
-   float *pedeG2 = &addr_pede[0+size_matrix*5];
-   float *pedeRMS = &addr_pede[0+size_matrix*6];
-   */
     // For each pixel in the exposure
     for (i = 0; i < 4096; i ++) {
         uint16_t gain_level = in[i] & 0xc000; // take first two bits
@@ -98,11 +89,39 @@ static snap_membus_t int16_to_mbus(int16_t *text)
         return mem;
 }
 
+static void mbus_to_float(snap_membus_t *data_read, float *table_float_in)
+{
+	union {
+		uint64_t	value_u;
+		float		value_d;
+	};
+	loop_m2d2: for(int j = 0; j < NB_DW_PER_FLOAT; j++) {
+#pragma HLS UNROLL
+		value_u = (uint64_t)data_read[0]((8*sizeof(float)*(j+1))-1, (8*sizeof(float)*j));
+		table_float_in[j] = value_d;
+	}
+}
+
 static void mbus_to_uint16(snap_membus_t *data_read, uint16_t *table_uint16_in)
 {
-	loop_m2d1: for(int i = 0; i < NB_DW_PER_UINT; i++)
-#pragma HLS PIPELINE
+	loop_m2d1: for(int i = 0; i < NB_DW_PER_UINT; i++) {
+#pragma HLS UNROLL
 		table_uint16_in[i] = (uint64_t)data_read[0]((8*sizeof(uint16_t)*(i+1))-1, (8*sizeof(uint16_t)*i));
+	}
+}
+static void ReadFloat(snap_membus_t *din_gmem, snap_membus_t *InputBuf, uint64_t addr_offset_idx, float *FloatOut)
+{
+	int Datacnt = 0;
+	uint32_t size_to_transfer = RAWINSIZE*sizeof(float);
+	uint32_t bytes_to_transfer;
+	while (size_to_transfer > 0) {
+		bytes_to_transfer = MIN(size_to_transfer, BPERDW);
+		memcpy(&InputBuf[0], din_gmem + addr_offset_idx, bytes_to_transfer);
+		mbus_to_float(&InputBuf[0], &FloatOut[Datacnt]);
+		Datacnt += NB_DW_PER_FLOAT;
+		size_to_transfer -= bytes_to_transfer;
+		addr_offset_idx += (bytes_to_transfer >> ADDR_RIGHT_SHIFT);
+	}
 }
 
 //----------------------------------------------------------------------
@@ -120,50 +139,19 @@ static int process_action(snap_membus_t *din_gmem,
 	addr_datain_idx = act_reg->Data.RawIn.addr >> ADDR_RIGHT_SHIFT;
 	addr_dataout_idx = act_reg->Data.ConvOut.addr >> ADDR_RIGHT_SHIFT;
 	
-//	float PedeGain[DETECTORX*DETECTORY*NMODULES*7] = {0};
 	uint16_t DataIn[RAWINSIZE] = {0};
+	float PedeRMS[RAWINSIZE] = {0.0};
+	float PedeG0[RAWINSIZE] = {0.0};
+	float PedeG1[RAWINSIZE] = {0.0};
+	float PedeG2[RAWINSIZE] = {0.0};
+	float GainG0[RAWINSIZE] = {0.0};
+	float GainG1[RAWINSIZE] = {0.0};
+	float GainG2[RAWINSIZE] = {0.0};
 	int16_t DataOut[CONVOUTSIZE] = {0};
 
 	uint32_t size_to_transfer, bytes_to_transfer;
-	snap_membus_t DataInBuf[1], DataOutBuf[1];
+	snap_membus_t DataInBuf[1], DataOutBuf[1], PedeGainBuf[1];
 	int Datacnt = 0;
-
-
-/*
-	//memcpy((float*)PedeGain, din_gmem + addr_pede_idx, size_matrix*7*sizeof(float));
-	uint32_t action_xfer_size;
-	uint32_t xfer_size;
-	uint32_t nb_blocks_to_xfer;
-	snapu64_t address_xfer_offset = 0x0;
-	action_xfer_size = size_matrix*7*sizeof(float);
-	int size_in_words;
-	if(action_xfer_size %MAX_NB_OF_BYTES_READ == 0)
-		nb_blocks_to_xfer = (action_xfer_size / MAX_NB_OF_BYTES_READ);
-	else
-		nb_blocks_to_xfer = (action_xfer_size / MAX_NB_OF_BYTES_READ) + 1;
-	for (int i = 0; i < nb_blocks_to_xfer; i++ ) {
-		xfer_size = MIN(action_xfer_size,(snapu32_t)MAX_NB_OF_BYTES_READ);
-		if(xfer_size % BPERDW == 0)
-			size_in_words = xfer_size/BPERDW;
-		else
-			size_in_words = (xfer_size/BPERDW) + 1;
-		memcpy(&PedeGain[(int)(address_xfer_offset/sizeof(float))], din_gmem + addr_pede_idx + address_xfer_offset, size_in_words);
-		action_xfer_size -= xfer_size;
-		address_xfer_offset += (snapu64_t)(xfer_size >> ADDR_RIGHT_SHIFT);
-	}
-*/
-
-	//memcpy((uint16_t*)DataIn, din_gmem + addr_datain_idx, size_matrix*NFRAMES*sizeof(uint16_t));
-	/*Datacnt = 0;
-	size_to_transfer = size_matrix*NFRAMES*sizeof(uint16_t);
-	while (size_to_transfer > 0) {
-		bytes_to_transfer = MIN(size_to_transfer, BPERDW);
-		memcpy(DataInBuf, din_gmem + addr_datain_idx, BPERDW);
-		mbus_to_uint16(&DataIn[Datacnt], DataInBuf);
-		Datacnt += NB_DW_PER_UINT;
-		size_to_transfer -= bytes_to_transfer;
-		addr_dataout_idx += bytes_to_transfer;
-	}*/
 /*
 	// Processing converter function
 	for (unsigned int i = 0; i < NFRAMES; i++) {
@@ -173,16 +161,18 @@ static int process_action(snap_membus_t *din_gmem,
 	}
 */
 /*
-	for (int cnt=0; cnt< sizeout_matrix*NFRAMES*sizeof(uint16_t); cnt ++) {
-		if (cnt < size_matrix*NFRAMES*sizeof(int16_t)) {DataOut[cnt]=DataIn[cnt];}
-		else {DataOut[cnt]=0;}
-	}
+   float *gainG0 = &addr_pede[0];
+   float *gainG1 = &addr_pede[0+size_matrix];
+   float *gainG2 = &addr_pede[0+size_matrix*2];
+   float *pedeG0 = &addr_pede[0+size_matrix*3];
+   float *pedeG1 = &addr_pede[0+size_matrix*4];
+   float *pedeG2 = &addr_pede[0+size_matrix*5];
+   float *pedeRMS = &addr_pede[0+size_matrix*6];
 */
-
 	uint32_t out_init_addr, out_addr, col, line;
 
-	for (int i = 0; i < NFRAMES; i++) {
-		for (int j = 0; j < size_matrix/RAWINSIZE; j++) {
+	for (int idx_i = 0; idx_i < NFRAMES; idx_i++) {
+		for (int idx_j = 0; idx_j < (int)(size_matrix/RAWINSIZE); idx_j++) {
 			// Read-in DataIn
 			Datacnt = 0;
 			size_to_transfer = RAWINSIZE*sizeof(uint16_t);
@@ -193,25 +183,33 @@ static int process_action(snap_membus_t *din_gmem,
 				mbus_to_uint16(&DataInBuf[0], &DataIn[Datacnt]);
 				Datacnt += NB_DW_PER_INT;
 				size_to_transfer -= bytes_to_transfer;
-				addr_datain_idx += bytes_to_transfer;
+				addr_datain_idx += (bytes_to_transfer >> ADDR_RIGHT_SHIFT);
 			}
+			// Read Pede & Gain matrix
+			ReadFloat(din_gmem, &PedeGainBuf[0], addr_pede_idx, &GainG0[0]);
+			ReadFloat(din_gmem, &PedeGainBuf[0], addr_pede_idx + ((size_matrix*sizeof(float)) >> ADDR_RIGHT_SHIFT), &GainG1[0]);
+			ReadFloat(din_gmem, &PedeGainBuf[0], addr_pede_idx + ((size_matrix*2*sizeof(float)) >> ADDR_RIGHT_SHIFT), &GainG2[0]);
+			ReadFloat(din_gmem, &PedeGainBuf[0], addr_pede_idx + ((size_matrix*3*sizeof(float)) >> ADDR_RIGHT_SHIFT), &PedeG0[0]);
+			ReadFloat(din_gmem, &PedeGainBuf[0], addr_pede_idx + ((size_matrix*4*sizeof(float)) >> ADDR_RIGHT_SHIFT), &PedeG1[0]);
+			ReadFloat(din_gmem, &PedeGainBuf[0], addr_pede_idx + ((size_matrix*5*sizeof(float)) >> ADDR_RIGHT_SHIFT), &PedeG2[0]);
+			ReadFloat(din_gmem, &PedeGainBuf[0], addr_pede_idx + ((size_matrix*6*sizeof(float)) >> ADDR_RIGHT_SHIFT), &PedeRMS[0]);
 			//Set DataOut to all zeros
-			for (int k = 0; k < CONVOUTSIZE; k++) {
+			for (int idx_k = 0; idx_k < CONVOUTSIZE; idx_k++) {
 				DataOut[CONVOUTSIZE] = 0;
 			}	
 			//Convert(&(DataIn[4096*j+i*size_matrix]), &(DataOut[NMODULES*1030*514*i]), 0, j, PedeGain);
-			for (int k = 0; k < RAWINSIZE; k++) {
-        			out_addr = j * RAWINSIZE + k;   // Account for correct packet inside module
+			for (int idx_k = 0; idx_k < RAWINSIZE; idx_k++) {
+        			out_addr = idx_j * RAWINSIZE + idx_k;   // Account for correct packet inside module
         			col  = out_addr % DETECTORX;
         			line = out_addr / DETECTORX;
         			if (line > 255)  out_addr += 2 * 1030;
         			out_addr += 2 * (col / 256);
-				out_addr -= j * RAWINSIZE;
+				out_addr -= idx_j * RAWINSIZE;
 				//Later swap to converter function
-				DataOut[out_addr] = (int16_t)DataIn[k];
+				DataOut[out_addr] = (int16_t)DataIn[idx_k];
 			}
 			// Write DataOut
-			addr_dataout_post_addr = addr_dataout_idx + j*RAWINSIZE*sizeof(uint16_t) + i*size_matrix*sizeof(uint16_t);
+			addr_dataout_post_addr = addr_dataout_idx + ((idx_j*RAWINSIZE*sizeof(uint16_t)) >> ADDR_RIGHT_SHIFT) + ((idx_i*size_matrix*sizeof(uint16_t)) >> ADDR_RIGHT_SHIFT);
 			Datacnt = 0;
 			size_to_transfer = CONVOUTSIZE*sizeof(int16_t);
 			while (size_to_transfer > 0) {
@@ -220,9 +218,9 @@ static int process_action(snap_membus_t *din_gmem,
 				DataOutBuf[0] = int16_to_mbus(&DataOut[Datacnt]);
 				// Write out one word_t 
 				memcpy(dout_gmem + addr_dataout_post_addr, DataOutBuf, bytes_to_transfer);
-				Datacnt += NB_DW_PER_INT;
+				Datacnt += NB_DW_PER_UINT;
 				size_to_transfer -= bytes_to_transfer;
-				addr_dataout_post_addr += bytes_to_transfer;
+				addr_dataout_post_addr += (bytes_to_transfer >> ADDR_RIGHT_SHIFT);
 			}
 		}
 	}
