@@ -36,6 +36,9 @@ extern "C" {
 #define NMODULES 1
 #define NFRAMES 1
 
+#define RAWINSIZE		(1024)
+#define CONVOUTSIZE		(NMODULES*DETECTOROX*DETECTOROY*NFRAMES - NMODULES*DETECTORX*DETECTORY*NFRAMES + RAWINSIZE)
+
 /* Data structure used to exchange information between action and application */
 /* Size limit is 108 Bytes */
 typedef struct converter_job {
@@ -45,7 +48,8 @@ typedef struct converter_job {
 } converter_job_t;
 
 void memset_volatile(volatile void *s, char c, size_t n);
-void Convert(uint16_t in[4096], int16_t out[NMODULES*1030*514], uint16_t moduleNumber, uint16_t packetNumber, float addr_pede[DETECTORX*DETECTORY*NMODULES*7]);
+void Convert_sw(uint16_t in[4096], int16_t out[NMODULES*1030*514], uint16_t moduleNumber, uint16_t packetNumber, float addr_pede[DETECTORX*DETECTORY*NMODULES*7]);
+void Convert(uint16_t in[RAWINSIZE], int16_t out[CONVOUTSIZE], uint16_t frameNumber, uint16_t packetNumber, float GainG0[RAWINSIZE], float GainG1[RAWINSIZE], float GainG2[RAWINSIZE], float PedeG0[RAWINSIZE], float PedeG1[RAWINSIZE], float PedeG2[RAWINSIZE], float PedeRMS[RAWINSIZE]);
 
 #ifdef __cplusplus
 }

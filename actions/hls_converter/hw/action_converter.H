@@ -35,10 +35,6 @@
 #define NB_DW_PER_UINT		(BPERDW/sizeof(uint16_t))
 #define NB_DW_PER_FLOAT		(BPERDW/sizeof(float))
 
-
-#define RAWINSIZE		(4096)
-#define CONVOUTSIZE		(NMODULES*DETECTOROX*DETECTOROY*NFRAMES - NMODULES*DETECTORX*DETECTORY*NFRAMES + RAWINSIZE)
-
 typedef char word_t[BPERDW];
 
 //---------------------------------------------------------------------

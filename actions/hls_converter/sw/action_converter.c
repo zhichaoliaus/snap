@@ -57,7 +57,7 @@ static int16_t conv_round(float x) {
 	else { return (int16_t) (x-0.5); }
 }
 
-void Convert(uint16_t in[4096], int16_t out[NMODULES*1030*514], uint16_t moduleNumber, uint16_t packetNumber, float addr_pede[DETECTORX*DETECTORY*NMODULES*7]) {
+void Convert_sw(uint16_t in[4096], int16_t out[NMODULES*1030*514], uint16_t moduleNumber, uint16_t packetNumber, float addr_pede[DETECTORX*DETECTORY*NMODULES*7]) {
    int i;
    uint32_t out_addr1 = moduleNumber * DETECTORX * DETECTORY;            // Account for correct module
    uint32_t pixel0 = moduleNumber * DETECTORX * DETECTORY + packetNumber * 4096; 
@@ -129,7 +129,7 @@ static int action_main(struct snap_sim_action *action,
 
 	for (unsigned int i = 0; i < NFRAMES; i++) {
 		for (uint16_t j = 0; j < size_matrix/4096; j++) {
-			Convert(&(addr_datain[4096*j+i*size_matrix]), &(addr_dataout[NMODULES*1030*514*i]), 0, j, addr_pede);
+			Convert_sw(&(addr_datain[4096*j+i*size_matrix]), &(addr_dataout[NMODULES*1030*514*i]), 0, j, addr_pede);
 		}
 	}
 
