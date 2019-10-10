@@ -36,7 +36,7 @@ extern "C" {
 #define NMODULES 1
 #define NFRAMES 1
 
-#define RAWINSIZE		(1024)
+#define RAWINSIZE		(4096)
 #define CONVOUTSIZE		(NMODULES*DETECTOROX*DETECTOROY*NFRAMES - NMODULES*DETECTORX*DETECTORY*NFRAMES + RAWINSIZE)
 
 /* Data structure used to exchange information between action and application */

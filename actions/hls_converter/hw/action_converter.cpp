@@ -26,6 +26,7 @@
 #include "ap_int.h"
 #include "action_converter.H"
 #include "math.h"
+#include <stdint.h>
 
 static int16_t conv_round(float x) {
 	if (x > 0) {return (int16_t) (x+0.5); }
@@ -59,7 +60,7 @@ void Convert(uint16_t in[RAWINSIZE], int16_t out[CONVOUTSIZE], uint16_t frameNum
             // G2: 11
             case 0xc000: 
               out[out_addr] = conv_round((adcfloat - PedeG2[i]) * GainG2[i]);
-              if (adc == 0x0000) out[out_addr] = INT16_MAX; // Wrong value
+              if (adc == 0x0000) out[out_addr] = INT16_MIN; // Wrong value
               if (adc == 0x3fff) out[out_addr] = INT16_MAX; // Saturated pixel
               break;
         }
@@ -143,8 +144,7 @@ static int process_action(snap_membus_t *din_gmem,
 	int Datacnt = 0;
 
 	for (int idx_i = 0; idx_i < NFRAMES; idx_i++) {
-//		for (int idx_j = 0; idx_j < (int)(size_matrix/RAWINSIZE); idx_j++) {
-		for (int idx_j = 0; idx_j < 2; idx_j++) {
+		for (int idx_j = 0; idx_j < (int)(size_matrix/RAWINSIZE); idx_j++) {
 			// Read-in DataIn
 			Datacnt = 0;
 			size_to_transfer = RAWINSIZE*sizeof(uint16_t);
@@ -169,45 +169,7 @@ static int process_action(snap_membus_t *din_gmem,
 			for (int idx_k = 0; idx_k < CONVOUTSIZE; idx_k++) {
 				DataOut[CONVOUTSIZE] = 0;
 			}	
-			//Convert(&(DataIn[0]), &(DataOut[0]), idx_i, idx_j, &GainG0[0], &GainG1[0], &GainG2[0], &PedeG0[0], &PedeG1[0], &PedeG2[0], &PedeRMS[0]);
-			uint32_t out_addr, col, line;
-			for (int idx_k = 0; idx_k < RAWINSIZE; idx_k++) {
-        			out_addr = idx_j * RAWINSIZE + idx_k;   // Account for correct packet inside module
-        			col  = out_addr % DETECTORX;
-        			line = out_addr / DETECTORX;
-        			if (line > 255)  out_addr += 2 * 1030;
-        			out_addr += 2 * (col / 256);
-				out_addr -= idx_j * RAWINSIZE;
-				
-				uint16_t gain_level = DataIn[idx_k] & 0xc000; // take first two bits
-        			uint16_t adc        = DataIn[idx_k] & 0x3fff; // take 14-remaining bits
-   				float adcfloat      = (float) adc;          // convert to float
-        			switch (gain_level) {
-            			// G0: 00
-            			case 0: 
-				  //DataOut[out_addr] = (int16_t)((adcfloat - PedeG0[idx_k]));
-				  DataOut[out_addr] = (int16_t)((adcfloat - PedeG0[idx_k])*GainG0[idx_k]);
-            			  //if (fabs(adcfloat-PedeG0[idx_k]) < 2 * PedeRMS[idx_k])
-            			  //    PedeG0[idx_k] = (99 * PedeG0[idx_k] + adcfloat) / 100.0;
-            			  //DataOut[out_addr] = conv_round((adcfloat - PedeG0[idx_k]) * GainG0[idx_k]);
-            			  break;
-            			// G1: 01
-            			case 0x4000: 
-            			  //DataOut[out_addr] = conv_round((adcfloat - PedeG1[idx_k]) * GainG1[idx_k]);
-				  //DataOut[out_addr] = (int16_t)((adcfloat - PedeG1[idx_k]));
-				  DataOut[out_addr] = (int16_t)((adcfloat - PedeG0[idx_k])*GainG0[idx_k]);
-            			  break;
-            			// G2: 11
-            			case 0xc000: 
-            			  //DataOut[out_addr] = conv_round((adcfloat - PedeG2[idx_k]) * GainG2[idx_k]);
-            			  //if (adc == 0x0000) DataOut[out_addr] = INT16_MAX; // Wrong value
-            			  //if (adc == 0x3fff) DataOut[out_addr] = INT16_MAX; // Saturated pixel
-				  //DataOut[out_addr] = (int16_t)((adcfloat - PedeG2[idx_k]));
-				  DataOut[out_addr] = (int16_t)((adcfloat - PedeG0[idx_k])*GainG0[idx_k]);
-            			  break;
-				}
-				
-			}
+			Convert(&(DataIn[0]), &(DataOut[0]), idx_i, idx_j, &GainG0[0], &GainG1[0], &GainG2[0], &PedeG0[0], &PedeG1[0], &PedeG2[0], &PedeRMS[0]);
 			// Write DataOut
 			addr_dataout_post_addr = addr_dataout_idx + ((idx_j*RAWINSIZE*sizeof(uint16_t)) >> ADDR_RIGHT_SHIFT) + ((idx_i*size_matrix*sizeof(uint16_t)) >> ADDR_RIGHT_SHIFT);
 			Datacnt = 0;
