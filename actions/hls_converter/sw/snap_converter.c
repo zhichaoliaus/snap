@@ -325,8 +325,6 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	
-	printf("DataOut for first four are: %d\t%d\t%d\t%d\n", data_out[0],data_out[1],data_out[2],data_out[3]);
 
 	// Display the time of the action call (MMIO registers filled + execution)
 	fprintf(stdout, "SNAP converter took %lld usec\n",
