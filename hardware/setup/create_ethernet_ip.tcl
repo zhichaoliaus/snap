@@ -104,6 +104,9 @@ connect_bd_intf_net [get_bd_intf_pins GULF_Stream_0/meta_rx] [get_bd_intf_ports 
 create_bd_intf_port -mode Slave -vlnv clarkshen.com:user:GULF_stream_meta_rtl:1.0 meta_tx
 connect_bd_intf_net [get_bd_intf_pins GULF_Stream_0/meta_tx] [get_bd_intf_ports meta_tx]
 
+create_bd_port -dir O -type clk gt_txusrclk2
+set_property -dict [list CONFIG.CLK_DOMAIN {ethernet_ip_cmac_usplus_0_0_gt_txusrclk2} CONFIG.FREQ_HZ {322265625}] [get_bd_ports gt_txusrclk2]
+connect_bd_net [get_bd_pins eth_100g/gt_txusrclk2] [get_bd_ports gt_txusrclk2]
 
 set_property name init [get_bd_intf_ports CLK_IN_D_0]
 set_property name gt_ref [get_bd_intf_ports gt_ref_clk_0]

@@ -138,6 +138,7 @@ export_simulation -of_objects [get_files $ip_dir/fifo_4x512/fifo_4x512.xci] -dir
 # SDRAM_USED=TRUE   8GB AlphaData 9V3     DDR4 RAM CUSTOM_DBI_K4A8G085WB-RC (8Gb, x8)
 # SDRAM_USED=TRUE   8GB ReflexCES VUP     DDR4 RAM MT40A512M16HA-075E (8Gb, x16)
 set create_clock_conv   FALSE
+set create_clock_conv_eth   FALSE
 set create_interconnect FALSE
 set create_bram         FALSE
 set create_ddr3         FALSE
@@ -233,6 +234,7 @@ if { $fpga_card == "ADKU3" } {
   }
   if { $eth_used == "TRUE" } {
       set create_ethernet_ip  TRUE
+      set create_clock_conv_eth   TRUE
   }
 }
 
@@ -251,6 +253,18 @@ if { $create_clock_conv == "TRUE" } {
   generate_target all                          [get_files $ip_dir/axi_clock_converter/axi_clock_converter.xci] >> $log_file
   export_ip_user_files -of_objects             [get_files $ip_dir/axi_clock_converter/axi_clock_converter.xci] -no_script -force >> $log_file
   export_simulation    -of_objects             [get_files $ip_dir/axi_clock_converter/axi_clock_converter.xci] -directory $ip_dir/ip_user_files/sim_scripts -force >> $log_file
+}
+
+#create Ethernet IP clock converter
+if { $create_clock_conv_eth == "TRUE" } {
+  puts "                        generating IP axis_clock_converter (axi stream)"
+  create_ip -name axis_clock_converter -vendor xilinx.com -library ip -version 1.1 -module_name axis_clock_converter -dir $ip_dir  >> $log_file
+  set_property -dict [list CONFIG.TDATA_NUM_BYTES {64} CONFIG.HAS_TKEEP {1} CONFIG.HAS_TLAST {1}] [get_ips axis_clock_converter]
+  set_property generate_synth_checkpoint false [get_files $ip_dir/axis_clock_converter/axis_clock_converter.xci]
+  generate_target {instantiation_template}     [get_files $ip_dir/axis_clock_converter/axis_clock_converter.xci] >> $log_file
+  generate_target all                          [get_files $ip_dir/axis_clock_converter/axis_clock_converter.xci] >> $log_file
+  export_ip_user_files -of_objects             [get_files $ip_dir/axis_clock_converter/axis_clock_converter.xci] -no_script -force >> $log_file
+  export_simulation    -of_objects             [get_files $ip_dir/axis_clock_converter/axis_clock_converter.xci] -directory $ip_dir/ip_user_files/sim_scripts -force >> $log_file
 }
 
 #create axi interconnect

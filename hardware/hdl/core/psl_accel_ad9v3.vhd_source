@@ -485,7 +485,7 @@ ARCHITECTURE psl_accel OF psl_accel IS
     din_eth0_TKEEP : IN STD_LOGIC_VECTOR (63 downto 0);
     din_eth0_TSTRB : IN STD_LOGIC_VECTOR (63 downto 0);
     din_eth0_TUSER : IN STD_LOGIC_VECTOR (3 downto 0);
-    din_eth0_TLAST : IN STD_LOGIC_VECTOR (0 downto 0);
+    din_eth0_TLAST : IN STD_LOGIC;
     din_eth0_TID : IN STD_LOGIC_VECTOR (4 downto 0);
     din_eth0_TDEST : IN STD_LOGIC_VECTOR (4 downto 0);
     dout_eth0_TDATA : OUT STD_LOGIC_VECTOR (511 downto 0);
@@ -494,7 +494,7 @@ ARCHITECTURE psl_accel OF psl_accel IS
     dout_eth0_TKEEP : OUT STD_LOGIC_VECTOR (63 downto 0);
     dout_eth0_TSTRB : OUT STD_LOGIC_VECTOR (63 downto 0);
     dout_eth0_TUSER : OUT STD_LOGIC_VECTOR (3 downto 0);
-    dout_eth0_TLAST : OUT STD_LOGIC_VECTOR (0 downto 0);
+    dout_eth0_TLAST : OUT STD_LOGIC;
     dout_eth0_TID : OUT STD_LOGIC_VECTOR (4 downto 0);
     dout_eth0_TDEST : OUT STD_LOGIC_VECTOR (4 downto 0);
 #endif
@@ -658,6 +658,30 @@ ARCHITECTURE psl_accel OF psl_accel IS
   END COMPONENT;
 #endif
 
+#ifdef CONFIG_ENABLE_ETHERNET
+  --
+  -- AXI Stream Clock converter
+  --
+  COMPONENT axis_clock_converter
+    PORT (
+      s_axis_aresetn  : IN  STD_LOGIC;
+      s_axis_aclk     : IN  STD_LOGIC;
+      m_axis_aresetn  : IN  STD_LOGIC;
+      m_axis_aclk     : IN  STD_LOGIC;
+      s_axis_tvalid   : IN  STD_LOGIC;
+      s_axis_tready   : OUT STD_LOGIC;
+      s_axis_tdata    : IN  STD_LOGIC_VECTOR(C_AXI_CARD_MEM0_DATA_WIDTH-1 DOWNTO 0);
+      s_axis_tkeep    : IN  STD_LOGIC_VECTOR(63 DOWNTO 0);
+      s_axis_tlast    : IN  STD_LOGIC;
+      m_axis_tvalid   : OUT STD_LOGIC;
+      m_axis_tready   : IN  STD_LOGIC;
+      m_axis_tdata    : OUT STD_LOGIC_VECTOR(C_AXI_CARD_MEM0_DATA_WIDTH-1 DOWNTO 0);
+      m_axis_tkeep    : OUT STD_LOGIC_VECTOR(63 DOWNTO 0);
+      m_axis_tlast    : OUT STD_LOGIC
+    );
+  END COMPONENT;
+#endif
+
 #ifdef CONFIG_ENABLE_NVME
   --
   -- AXI Interconnect
@@ -794,6 +818,7 @@ ARCHITECTURE psl_accel OF psl_accel IS
   --
     COMPONENT ethernet_ip
     PORT(
+	gt_txusrclk2		: OUT STD_LOGIC;
         arp_status              : OUT STD_LOGIC_VECTOR(1 DOWNTO 0); 
         gt_ref_clk_n            : IN STD_LOGIC; 
         gt_ref_clk_p            : IN STD_LOGIC;
@@ -1360,6 +1385,7 @@ ARCHITECTURE psl_accel OF psl_accel IS
 #endif
 
 #ifdef CONFIG_ENABLE_ETHERNET
+    SIGNAL eth_gt_txusrclk2	       : STD_LOGIC;
     SIGNAL act_meta_rx_local_port      : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL act_meta_rx_remote_ip       : STD_LOGIC_VECTOR(31 DOWNTO 0);
     SIGNAL act_meta_rx_remote_port     : STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -1368,13 +1394,23 @@ ARCHITECTURE psl_accel OF psl_accel IS
     SIGNAL act_meta_tx_remote_port     : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL act_payload_from_user_tdata : STD_LOGIC_VECTOR(511 DOWNTO 0);
     SIGNAL act_payload_from_user_tkeep : STD_LOGIC_VECTOR(63 DOWNTO 0);
-    SIGNAL act_payload_from_user_tlast : STD_LOGIC_VECTOR(0 DOWNTO 0);
+    SIGNAL act_payload_from_user_tlast : STD_LOGIC;
     SIGNAL act_payload_from_user_tready: STD_LOGIC;
     SIGNAL act_payload_from_user_tvalid: STD_LOGIC;
+    SIGNAL act_payload_from_axisc_tdata : STD_LOGIC_VECTOR(511 DOWNTO 0);
+    SIGNAL act_payload_from_axisc_tkeep : STD_LOGIC_VECTOR(63 DOWNTO 0);
+    SIGNAL act_payload_from_axisc_tlast : STD_LOGIC;
+    SIGNAL act_payload_from_axisc_tready: STD_LOGIC;
+    SIGNAL act_payload_from_axisc_tvalid: STD_LOGIC;
     SIGNAL act_payload_to_user_tdata   : STD_LOGIC_VECTOR(511 DOWNTO 0);
     SIGNAL act_payload_to_user_tkeep   : STD_LOGIC_VECTOR(63 DOWNTO 0);
-    SIGNAL act_payload_to_user_tlast   : STD_LOGIC_VECTOR(0 DOWNTO 0);
+    SIGNAL act_payload_to_user_tlast   : STD_LOGIC;
     SIGNAL act_payload_to_user_tvalid  : STD_LOGIC;
+    SIGNAL act_payload_to_user_tready  : STD_LOGIC;
+    SIGNAL act_payload_to_axisc_tdata   : STD_LOGIC_VECTOR(511 DOWNTO 0);
+    SIGNAL act_payload_to_axisc_tkeep   : STD_LOGIC_VECTOR(63 DOWNTO 0);
+    SIGNAL act_payload_to_axisc_tlast   : STD_LOGIC;
+    SIGNAL act_payload_to_axisc_tvalid  : STD_LOGIC;
     SIGNAL eth_rst                     : STD_LOGIC;
 #endif
 
@@ -1386,11 +1422,19 @@ BEGIN
   BEGIN
     IF (rising_edge(ha_pclock)) THEN
       action_reset_n_q   <= NOT action_reset;
-      eth_rst            <= pci_user_reset;
       pci_user_reset_q   <= pci_user_reset;
       pci_user_reset_qq  <= pci_user_reset_q;     
     END IF;
   END PROCESS reset_reg;
+
+#ifdef CONFIG_ENABLE_ETHERNET
+  eth_reset_reg : PROCESS (eth_gt_txusrclk2)
+  BEGIN
+    IF (rising_edge(eth_gt_txusrclk2)) THEN
+      eth_rst            <= pci_user_reset;
+    END IF;
+  END PROCESS eth_reset_reg;
+#endif
 
 #ifdef CONFIG_ENABLE_DDRI
   --
@@ -1638,7 +1682,7 @@ BEGIN
 #ifdef CONFIG_ENABLE_ETHERNET
     din_eth0_TDATA                    => act_payload_to_user_tdata,
     din_eth0_TVALID                   => act_payload_to_user_tvalid,
-    din_eth0_TREADY                   => open,
+    din_eth0_TREADY                   => act_payload_to_user_tready,
     din_eth0_TKEEP                    => act_payload_to_user_tkeep,
     din_eth0_TSTRB                    => (others => '0'),
     din_eth0_TUSER                    => (others => '0'),
@@ -1810,7 +1854,7 @@ BEGIN
       m_axi_arsize    => sdram_axi_arsize,
       m_axi_arvalid   => sdram_axi_arvalid,
       m_axi_awaddr    => sdram_axi_awaddr,
-      m_axi_awburst   => sdram_axi_awburst,
+      m_axi_awburst   => sdram_a    => xi_awburst,
       m_axi_awcache   => sdram_axi_awcache,
       m_axi_awid      => sdram_axi_awid,
       m_axi_awlen     => sdram_axi_awlen,
@@ -1839,6 +1883,51 @@ BEGIN
     );
 #endif
 
+#ifdef CONFIG_ENABLE_ETHERNET
+  axis_clock_converter_i : axis_clock_converter
+    PORT MAP (
+      s_axis_aclk      => ha_pclock,
+      s_axis_aresetn   => action_reset_n_q,
+      m_axis_aclk      => eth_gt_txusrclk2,
+      m_axis_aresetn   => eth_rst,
+      --
+      -- FROM ACTION
+      s_axis_tvalid    => act_payload_from_user_tvalid,
+      s_axis_tready    => act_payload_from_user_tready,
+      s_axis_tdata     => act_payload_from_user_tdata,
+      s_axis_tkeep     => act_payload_from_user_tkeep,
+      s_axis_tlast     => act_payload_from_user_tlast,
+      --
+      -- TO Ethernet IP
+      m_axis_tvalid    => act_payload_from_axisc_tvalid,
+      m_axis_tready    => act_payload_from_axisc_tready,
+      m_axis_tdata     => act_payload_from_axisc_tdata,
+      m_axis_tkeep     => act_payload_from_axisc_tkeep,
+      m_axis_tlast     => act_payload_from_axisc_tlast
+    );
+
+  axis_clock_converter_o : axis_clock_converter
+    PORT MAP (
+      s_axis_aclk      => ha_pclock,
+      s_axis_aresetn   => action_reset_n_q,
+      m_axis_aclk      => eth_gt_txusrclk2,
+      m_axis_aresetn   => eth_rst,
+      --
+      -- FROM Ethernet IP
+      m_axis_tvalid    => act_payload_to_axisc_tvalid,
+      m_axis_tready    => '0',
+      m_axis_tdata     => act_payload_to_axisc_tdata,
+      m_axis_tkeep     => act_payload_to_axisc_tkeep,
+      m_axis_tlast     => act_payload_to_axisc_tlast,
+      --
+      -- TO Action
+      s_axis_tvalid    => act_payload_to_user_tvalid,
+      s_axis_tready    => act_payload_to_user_tready,
+      s_axis_tdata     => act_payload_to_user_tdata,
+      s_axis_tkeep     => act_payload_to_user_tkeep,
+      s_axis_tlast     => act_payload_to_user_tlast
+    );
+#endif
 
 #ifdef CONFIG_ENABLE_NVME
   act_axi_card_mem0_bid  (3 downto 1) <= "000";
@@ -2275,6 +2364,7 @@ BEGIN
   --
     ethernet_ip_i: ethernet_ip
     port map(
+	gt_txusrclk2		      => eth_gt_txusrclk2,
         arp_status                    => open,
         gt_ref_clk_n                  => gt_ref_clk_n,
         gt_ref_clk_p                  => gt_ref_clk_p,
@@ -2302,15 +2392,15 @@ BEGIN
         meta_tx_local_port            => act_meta_tx_local_port,
         meta_tx_remote_ip             => act_meta_tx_remote_ip,
         meta_tx_remote_port           => act_meta_tx_remote_port,
-        payload_from_user_tdata       => act_payload_from_user_tdata,
-        payload_from_user_tkeep       => act_payload_from_user_tkeep,
-        payload_from_user_tlast       => act_payload_from_user_tlast(0),
-        payload_from_user_tready      => act_payload_from_user_tready,
-        payload_from_user_tvalid      => act_payload_from_user_tvalid,
-        payload_to_user_tdata         => act_payload_to_user_tdata,
-        payload_to_user_tkeep         => act_payload_to_user_tkeep,
-        payload_to_user_tlast         => act_payload_to_user_tlast(0),
-        payload_to_user_tvalid        => act_payload_to_user_tvalid,
+        payload_from_user_tdata       => act_payload_from_axisc_tdata,
+        payload_from_user_tkeep       => act_payload_from_axisc_tkeep,
+        payload_from_user_tlast       => act_payload_from_axisc_tlast,
+        payload_from_user_tready      => act_payload_from_axisc_tready,
+        payload_from_user_tvalid      => act_payload_from_axisc_tvalid,
+        payload_to_user_tdata         => act_payload_to_axisc_tdata,
+        payload_to_user_tkeep         => act_payload_to_axisc_tkeep,
+        payload_to_user_tlast         => act_payload_to_axisc_tlast,
+        payload_to_user_tvalid        => act_payload_to_axisc_tvalid,
         rst                           => eth_rst
     );
 #endif
