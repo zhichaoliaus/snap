@@ -854,8 +854,7 @@ ARCHITECTURE psl_accel OF psl_accel IS
         payload_to_user_tdata   : OUT STD_LOGIC_VECTOR(511 DOWNTO 0);
         payload_to_user_tkeep   : OUT STD_LOGIC_VECTOR(63 DOWNTO 0);
         payload_to_user_tlast   : OUT STD_LOGIC;
-        payload_to_user_tvalid  : OUT STD_LOGIC;
-        rst                     : IN STD_LOGIC
+        payload_to_user_tvalid  : OUT STD_LOGIC
     );
     END COMPONENT;
 #endif
@@ -1411,7 +1410,6 @@ ARCHITECTURE psl_accel OF psl_accel IS
     SIGNAL act_payload_to_axisc_tkeep   : STD_LOGIC_VECTOR(63 DOWNTO 0);
     SIGNAL act_payload_to_axisc_tlast   : STD_LOGIC;
     SIGNAL act_payload_to_axisc_tvalid  : STD_LOGIC;
-    SIGNAL eth_rst                     : STD_LOGIC;
 #endif
 
 BEGIN
@@ -1426,15 +1424,6 @@ BEGIN
       pci_user_reset_qq  <= pci_user_reset_q;     
     END IF;
   END PROCESS reset_reg;
-
-#ifdef CONFIG_ENABLE_ETHERNET
-  eth_reset_reg : PROCESS (eth_gt_txusrclk2)
-  BEGIN
-    IF (rising_edge(eth_gt_txusrclk2)) THEN
-      eth_rst            <= pci_user_reset;
-    END IF;
-  END PROCESS eth_reset_reg;
-#endif
 
 #ifdef CONFIG_ENABLE_DDRI
   --
@@ -1889,7 +1878,7 @@ BEGIN
       s_axis_aclk      => ha_pclock,
       s_axis_aresetn   => action_reset_n_q,
       m_axis_aclk      => eth_gt_txusrclk2,
-      m_axis_aresetn   => eth_rst,
+      m_axis_aresetn   => '0',
       --
       -- FROM ACTION
       s_axis_tvalid    => act_payload_from_user_tvalid,
@@ -1911,7 +1900,7 @@ BEGIN
       s_axis_aclk      => ha_pclock,
       s_axis_aresetn   => action_reset_n_q,
       m_axis_aclk      => eth_gt_txusrclk2,
-      m_axis_aresetn   => eth_rst,
+      m_axis_aresetn   => '0',
       --
       -- FROM Ethernet IP
       m_axis_tvalid    => act_payload_to_axisc_tvalid,
@@ -2400,8 +2389,7 @@ BEGIN
         payload_to_user_tdata         => act_payload_to_axisc_tdata,
         payload_to_user_tkeep         => act_payload_to_axisc_tkeep,
         payload_to_user_tlast         => act_payload_to_axisc_tlast,
-        payload_to_user_tvalid        => act_payload_to_axisc_tvalid,
-        rst                           => eth_rst
+        payload_to_user_tvalid        => act_payload_to_axisc_tvalid
     );
 #endif
 END psl_accel;

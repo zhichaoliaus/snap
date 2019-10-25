@@ -74,6 +74,11 @@ connect_bd_intf_net [get_bd_intf_pins GULF_Stream_0/m_axis] [get_bd_intf_pins et
 connect_bd_intf_net [get_bd_intf_pins GULF_Stream_0/s_axis] [get_bd_intf_pins eth_100g/lbus_axis_converter_0/m_axis]
 connect_bd_net [get_bd_pins GULF_Stream_0/clk] [get_bd_pins eth_100g/cmac_usplus_0/gt_txusrclk2]
 
+# Setting gulf_stream rst to zero
+addip xlconstant rst
+set_property -dict [list CONFIG.CONST_VAL {0}] [get_bd_cells rst]
+connect_bd_net [get_bd_pins rst/dout] [get_bd_pins GULF_Stream_0/rst]
+
 #make_bd_intf_pins_external [get_bd_intf_pins GULF_Stream_0/payload_from_user]
 create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:axis_tlm:1.0 payload_from_user
 connect_bd_intf_net [get_bd_intf_ports payload_from_user] [get_bd_intf_pins GULF_Stream_0/payload_from_user]
@@ -92,8 +97,8 @@ connect_bd_intf_net [get_bd_intf_ports gt_rx] [get_bd_intf_pins eth_100g/cmac_us
 create_bd_intf_port -mode Master -vlnv xilinx.com:display_cmac_usplus:gt_ports:2.0 gt_tx 
 connect_bd_intf_net [get_bd_intf_ports gt_tx] [get_bd_intf_pins eth_100g/cmac_usplus_0/gt_tx]
 
-create_bd_port -dir I -type rst rst
-connect_bd_net [get_bd_pins /GULF_Stream_0/rst] [get_bd_ports rst]
+#create_bd_port -dir I -type rst rst
+#connect_bd_net [get_bd_pins /GULF_Stream_0/rst] [get_bd_ports rst]
 
 create_bd_port -dir O -from 1 -to 0 arp_status
 connect_bd_net [get_bd_pins /GULF_Stream_0/arp_status] [get_bd_ports arp_status]

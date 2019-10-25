@@ -98,7 +98,6 @@ void hls_action(snap_membus_t *din_gmem,
 #pragma HLS INTERFACE axis  port=din_eth0
 #pragma HLS INTERFACE axis  port=dout_eth0
 
-
 /*  // DDR memory Interface - CAN BE COMMENTED IF UNUSED
  * #pragma HLS INTERFACE m_axi port=d_ddrmem bundle=card_mem0 offset=slave depth=512 \
  *   max_read_burst_length=64  max_write_burst_length=64
